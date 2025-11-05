@@ -44,7 +44,7 @@ services:
 
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/e-todo.sql
+      - ./e-todo.sql
 
     ports:
       - "3306:3306"
