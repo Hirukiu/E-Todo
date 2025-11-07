@@ -1,12 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="Home.css">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
 <body class="background">
-    
+    <div class="burger">
+        <span class="material-symbols" onclick="toggler()" id="toggler">menu</span>
+    </div>
+    <div class="menu">
+        <div class="menu-container">
+            <ul class="menu-list">
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Create task</a></li>
+                <li><a href="/">Calendar</a></li>
+                <li><a href="/">Edit</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function toggler(){
+            const icons = documen.querySelector("#toggler");
+            const menu = document.querySelector('.menu');
+            if (icon.innerHTML == "menu"){
+                icon.innerHTML = "close";
+                menu.style.display = "block";
+            }
+            else {
+                icon.innerHTML = "menu";
+                menu.style.display = "none";
+            }
+        }
+    </script>
+
 </body>
 </html>
