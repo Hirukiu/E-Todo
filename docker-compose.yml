@@ -3,52 +3,36 @@ version: "3.8"
 services:
   web:
     build: ./backend
-
     container_name: etodo-web
-
     ports:
       - "${PORT}:5000"
-
     volumes:
       - .:/var/www/html
-
     depends_on:
       - db
-
     networks:
       - etodo-network
-
     environment:
       - PORT=${PORT}
       - SECRET=${SECRET}
-      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_HOST=db
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
 
-
   db:
     image: mysql:8
-
     container_name: etodo-db
-
     environment:
-
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-
       MYSQL_USER: ${MYSQL_USER}
-
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./e-todo.sql
-
+      - ./e-todo.sql:/docker-entrypoint-initdb.d/e-todo.sql
     ports:
-      - "3306:3306"
-
+      - "3307:3306"
     networks:
       - etodo-network
 
