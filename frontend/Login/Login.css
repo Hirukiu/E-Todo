@@ -1,7 +1,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 
 .background{
-  background-image: url('business-office-wallpaper.jpg');
+  background-image: url('../assets/business-office-wallpaper.jpg');
   background-size: 100%;
 }
 .Login{
