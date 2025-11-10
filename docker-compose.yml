@@ -5,9 +5,9 @@ services:
     build: ./backend
     container_name: etodo-web
     ports:
-      - "${PORT}:5000"
+      - "5000:5000"
     volumes:
-      - .:/var/www/html
+      - ./backend:/usr/src/app
     depends_on:
       - db
     networks:
@@ -23,6 +23,7 @@ services:
   db:
     image: mysql:8
     container_name: etodo-db
+
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -31,11 +32,9 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
       - ./e-todo.sql:/docker-entrypoint-initdb.d/e-todo.sql
-    ports:
-      - "3307:3306"
     networks:
       - etodo-network
-
+  
 volumes:
   mysql-data:
 

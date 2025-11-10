@@ -1,21 +1,29 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const path = require('path');
+const dotenv = require('dotenv');
+/*
 const authRoutes = require('./routes/auth/auth');
 const todosRoutes = require('./routes/todos/todos');
 const userRoutes = require('./routes/user/user');
+*/
+const {connectDB} = require('./config/db');
 
 dotenv.config();                        // recuperer les truc dans .env
+app.use(express.static(path.join(__dirname, '../../frontend')));    // Servir les fichiers statiques du frontend
+
 
 app.use(cors());                        //c'est pour autoriser les requetes entre le back et le front  
 app.use(express.json());                //pour que le backend puisse utiliser les information envoyée par le front
 
-app.use("/api/auth", authRoutes);       //setup les routes
+/*
+app.use("/api/auth", authRoutes);
 app.use("/api/todos", todosRoutes);
 app.use("/api/user", userRoutes);
+*/
 
-connectDB()                             //la fonction defini dans db.js 
-  .then(connection => {                 //lorsque elle as terminer faire :
-    app.locals.db = connection;         //donner acces a toutes les routes du serveur connection(la base de donées)
-    app.listen(process.env.PORT);       //faire ecouter le serveur sur le port defini dans env
-  });
+connectDB().then(db => {
+    app.locals.db = db;               // rendre la connexion a la db accessible dans toute les routes
+    app.listen(PORT);                 // demarrer le serveur  
+});
