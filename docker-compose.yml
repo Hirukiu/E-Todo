@@ -8,6 +8,7 @@ services:
       - "5000:5000"
     volumes:
       - ./backend:/usr/src/app
+      - ./frontend:/usr/src/app/frontend
     depends_on:
       - db
     networks:

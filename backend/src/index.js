@@ -17,6 +17,10 @@ app.use(express.static(path.join(__dirname, '../../frontend')));    // Servir le
 app.use(cors());                        //c'est pour autoriser les requetes entre le back et le front  
 app.use(express.json());                //pour que le backend puisse utiliser les information envoyée par le front
 
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/Login/Login.html'));
+});
 /*
 app.use("/api/auth", authRoutes);
 app.use("/api/todos", todosRoutes);
@@ -25,5 +29,5 @@ app.use("/api/user", userRoutes);
 
 connectDB().then(db => {
     app.locals.db = db;               // rendre la connexion a la db accessible dans toute les routes
-    app.listen(PORT);                 // demarrer le serveur  
+    app.listen(process.env.PORT);                 // demarrer le serveur  
 });
