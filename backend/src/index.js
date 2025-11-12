@@ -10,8 +10,8 @@ const userRoutes = require('./routes/user/user');
 */
 const {connectDB} = require('./config/db');
 
-dotenv.config();                        // recuperer les truc dans .env
-app.use(express.static(path.join(__dirname, '../../frontend')));    // Servir les fichiers statiques du frontend
+dotenv.config({path:'..'});                        // recuperer les truc dans .env
+app.use(express.static(path.join(__dirname, '../frontend')));    // Servir les fichiers statiques du frontend
 
 
 app.use(cors());                        //c'est pour autoriser les requetes entre le back et le front  
@@ -19,7 +19,7 @@ app.use(express.json());                //pour que le backend puisse utiliser le
 
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/Login/Login.html'));
+  res.sendFile(path.join(__dirname, '../frontend/Login.html'));
 });
 /*
 app.use("/api/auth", authRoutes);

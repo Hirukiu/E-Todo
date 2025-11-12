@@ -1,6 +1,7 @@
 const mysql = require('mysql2/promise');
 
-async function connectDB(retries = 10, delay = 3000) {
+async function connectDB() {
+  let retries = 3;
   while (retries > 0) {
     try {
       return await mysql.createConnection({
@@ -11,7 +12,7 @@ async function connectDB(retries = 10, delay = 3000) {
       });
     } catch (err) {
       retries -= 1;
-      await new Promise(res => setTimeout(res, delay));
+      await new Promise(res => setTimeout(res, 3000));
     }
   }
 }
