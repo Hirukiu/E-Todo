@@ -1,12 +1,10 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
 const path = require('path');
 const dotenv = require('dotenv');
-const authMiddleware = require('./middlewares/authMiddleware');
-const authRoutes = require('./routes/auth');
-const todosRoutes = require('./routes/todos');
-const userRoutes = require('./routes/user');
+const authRoutes = require('./routes/auth/auth');
+const todosRoutes = require('./routes/todos/todos');
+const userRoutes = require('./routes/user/user');
 
 const {connectDB} = require('./config/db');
 
