@@ -55,7 +55,6 @@
   }
 
   const form = document.getElementById("userForm");
-  const responseEl = document.getElementById("response");
 
   const user = {
         email: document.getElementById("email").value,
@@ -64,7 +63,7 @@
         password: document.getElementById("pwd").value
       };
 
-  const res = await fetch("http://localhost:5000", {
+  const res = fetch("http://localhost:5000", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(user) // on envoie l’objet JSON
