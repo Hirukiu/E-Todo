@@ -16,7 +16,7 @@ app.use(express.json());               //pour que le backend puisse utiliser les
 
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/Login.html'));
+  res.sendFile(path.join(__dirname, '../frontend/Create.html'));
 });
 /*
 app.use(authRoutes);
@@ -24,7 +24,6 @@ app.use(todosRoutes);
 app.use(userRoutes);
 */
 
-app.use(authMiddleware);
 
 connectDB().then(db => {
     app.locals.db = db;               // rendre la connexion a la db accessible dans toute les routes

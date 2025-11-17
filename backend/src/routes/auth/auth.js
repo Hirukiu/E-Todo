@@ -8,41 +8,36 @@ dotenv.config();
 
 const key = process.env.SECRET
 
-function authenticateUser(user, password) {
-    return db.query('SELECT COUNT(*) FROM users WHERE name = ? AND password = ?', [user, password]);
-}
 
-function userExists(email) {
+function userExists(email, db) {
     return db.query('SELECT COUNT(*) FROM users WHERE email = ?', [email]);
 }
 
-function registerUser(email, name, firstname, password) {
+function registerUser(email, name, firstname, password, db) {
     return db.query('INSERT INTO users (email, name, firstname, password) VALUES (?, ?, ?, ?)', [email, name, firstname, password]);
 }
 
 function hashPassword(password) {
-    const salt = bcrypt.genSaltSync(10);
-    return bcrypt.hashSync(password, salt);
+    const salt = bcryptjs.genSaltSync(10);
+    return bcryptjs.hashSync(password, salt);
 }
 
 function verifyPassword(password, hashedPassword) {
-    return bcrypt.compareSync(password, hashedPassword);
+    return bcryptjs.compareSync(password, hashedPassword);
 }
 
 auth.post('/register', (req, res) => {
     const db = req.app.locals.db;
     const { email, name, firstname, password } = req.body;
-    password = hashPassword(password);
-    if (!userExists(email)) {
-        registerUser(email, name, firstname, password);
+    const hashedPassword = hashPassword(password);
+    if (!userExists(email, db)) {
+        registerUser(email, name, firstname, hashedPassword, db);
 
         const token = jwt.sign(
             { email, name },         // les infos a encoder
             key,                     // la clé pour encoder les trucs
             { expiresIn: '1h' }      // la durée du token
         );
-
-
         res.status(201).json({ "token": token });
     }
     else {
