@@ -12,7 +12,7 @@
 </div>
 <div id="userForm" class="modal">
   
-  <form class="modal-content animate" action="/action_page.php" method="post">
+  <form class="modal-content animate" action="/" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('userForm').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div>
@@ -63,7 +63,7 @@
         password: document.getElementById("pwd").value
       };
 
-  const res = fetch("http://localhost:5000", {
+  const res = fetch("/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(user) // on envoie l’objet JSON
