@@ -8,13 +8,13 @@
 <div class="Login">
 <h2>Modal Register Form</h2>
 
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Register</button>
+<button onclick="document.getElementById('userForm').style.display='block'" style="width:auto;">Register</button>
 </div>
 <div id="userForm" class="modal">
   
-  <form class="modal-content animate" action="/action_page.php" method="post">
+  <form class="modal-content animate" action="/" method="post">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('userForm').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div>
     
     <div class="container">
@@ -30,14 +30,14 @@
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="pwd" required>
         
-      <button type="submit">Login</button>
+      <button type="submit">Register me</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <button type="button" onclick="document.getElementById('userForm').style.display='none'" class="cancelbtn">Cancel</button>
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </form>
@@ -63,7 +63,7 @@
         password: document.getElementById("pwd").value
       };
 
-  const res = fetch("http://localhost:5000", {
+  const res = fetch("/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(user) // on envoie l’objet JSON
