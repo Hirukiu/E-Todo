@@ -1,11 +1,11 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const auth = express.Router();
-const db = req.app.locals.db;
 const bcryptjs = require('bcryptjs');
 const dotenv = require('dotenv');
 
 dotenv.config();
+
 const key = process.env.SECRET
 
 function authenticateUser(user, password) {
@@ -30,9 +30,10 @@ function verifyPassword(password, hashedPassword) {
 }
 
 auth.post('/register', (req, res) => {
+    const db = req.app.locals.db;
     const { email, name, firstname, password } = req.body;
     password = hashPassword(password);
-    if (!userExists(email)){
+    if (!userExists(email)) {
         registerUser(email, name, firstname, password);
 
         const token = jwt.sign(
@@ -42,10 +43,10 @@ auth.post('/register', (req, res) => {
         );
 
 
-        res.status(201).json({"token": token});
+        res.status(201).json({ "token": token });
     }
     else {
-        res.status(409).json({"msg":"Account already exists"});
+        res.status(409).json({ "msg": "Account already exists" });
     }
 });
 
