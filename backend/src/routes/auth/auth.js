@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const auth = express.Router();
@@ -8,6 +10,7 @@ dotenv.config();
 
 const key = process.env.SECRET
 
+ 
 
 function userExists(email, db) {
     return db.query('SELECT COUNT(*) FROM users WHERE email = ?', [email]);
@@ -27,6 +30,7 @@ function verifyPassword(password, hashedPassword) {
 }
 
 auth.post('/register', (req, res) => {
+    console.log("Register request received");
     const db = req.app.locals.db;
     const { email, name, firstname, password } = req.body;
     const hashedPassword = hashPassword(password);
@@ -45,3 +49,4 @@ auth.post('/register', (req, res) => {
     }
 });
 
+module.exports = auth;
