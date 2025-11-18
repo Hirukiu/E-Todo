@@ -36,40 +36,14 @@
       </label>
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
+    <div class="btnregister" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('userForm').style.display='none'" class="cancelbtn">Cancel</button>
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </form>
 </div>
 
-<script>
-  // Get the modal
-  var modal = document.getElementById('userForm');
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-  }
-
-  const form = document.getElementById("userForm");
-
-  const user = {
-        email: document.getElementById("email").value,
-        name: document.getElementById("name").value,
-        firstname: document.getElementById("fname").value,
-        password: document.getElementById("pwd").value
-      };
-
-  const res = fetch("/register", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(user) // on envoie l’objet JSON
-        });
-
-</script>
+<script src="/main.js" defer></script>
 
 </body>
 </html>
