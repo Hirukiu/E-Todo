@@ -10,14 +10,19 @@ dotenv.config();
 
 const key = process.env.SECRET
 
- 
 
-function userExists(email, db) {
-    return db.query('SELECT COUNT(*) FROM user WHERE email = ?', [email]);
+
+async function userExists(email, db) {
+    const [rows] = await db.query('SELECT COUNT(*) AS count FROM user WHERE email = ?', [email]);
+    return rows[0].count > 0;
 }
 
-function registerUser(email, name, firstname, password, db) {
-    return db.query('INSERT INTO user (email, name, firstname, password) VALUES (?, ?, ?, ?)', [email, name, firstname, password]);
+async function registerUser(email, name, firstname, password, db) {
+    const [result] = await db.query(
+        'INSERT INTO user (email, name, firstname, password) VALUES (?, ?, ?, ?)',
+        [email, name, firstname, password]
+    );
+    return;
 }
 
 function hashPassword(password) {
@@ -31,13 +36,14 @@ function verifyPassword(password, hashedPassword) {
 
 
 
-auth.post('/register', (req, res) => {
-    console.log("Register request received");
-    
+auth.post('/register', async (req, res) => {  // ← async ici
+    console.log("requete recue");
+
     const db = req.app.locals.db;
     const { email, name, firstname, password } = req.body;
     const hashedPassword = hashPassword(password);
-    if (userExists(email, db)) {
+
+    if (!await userExists(email, db)) {
         registerUser(email, name, firstname, hashedPassword, db);
 
         const token = jwt.sign(
