@@ -35,7 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const result = await res.json();
-        console.log("Réponse du serveur :", result);
+        if (result.status == "Account already exists") 
+            {
+             messageDiv.textContent = "Cet utilisateur existe deja"; messageDiv.style.color = 'red'; 
+            }
+        else {
+             messageDiv.textContent = "Compte crée"; messageDiv.style.color = 'green'; 
+            }
     });
 });
 const btnforregister = document.querySelector(".btnforregister");
