@@ -8,27 +8,27 @@
 <div class="Login">
 <h2>Modal Register Form</h2>
 
-<button onclick="document.getElementById('userForm').style.display='block'" style="width:auto;">Register</button>
+<button class="btnforregister">Register</button>
 </div>
 <div id="userForm" class="modal">
   
   <form class="modal-content animate" action="/" method="post">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('userForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span class="close" title="Close Modal">&times;</span>
     </div>
     
     <div class="container">
       <label for="uname"><b>First Name</b></label>
-      <input type="text" placeholder="Enter First Name" name="fname" required>
+      <input type="text" placeholder="Enter First Name" name="fname" id="fname" required>
 
       <label for="psw"><b>Name</b></label>
-      <input type="text" placeholder="Enter Name" name="name" required>
+      <input type="text" placeholder="Enter Name" name="name" id="name" required>
 
       <label for="psw"><b>Email</b></label>
-      <input type="email" placeholder="Enter Email" name="email" required>
+      <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="pwd" required>
+      <input type="password" placeholder="Enter Password" name="pwd" id="pwd" required>
         
       <button type="submit">Register me</button>
       <label>
@@ -37,13 +37,13 @@
     </div>
 
     <div class="btnregister" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('userForm').style.display='none'" class="cancelbtn">Cancel</button>
+      <button type="button" class="cancelbtn">Cancel</button>
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </form>
 </div>
 
-<script src="/main.js" defer></script>
+<script src="main.js" defer></script>
 
 </body>
 </html>

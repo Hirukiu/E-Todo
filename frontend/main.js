@@ -1,4 +1,4 @@
-js
+
 
 
 // On récupère la modale
@@ -37,4 +37,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const result = await res.json();
         console.log("Réponse du serveur :", result);
     });
+});
+const btnforregister = document.querySelector(".btnforregister");
+
+btnforregister.addEventListener("click", function (event) {
+    const form = document.getElementById('userForm');
+    form.style.display = 'block';
+    form.style.width = 'auto';
+});
+
+const closeElement = document.querySelector(".close");
+
+closeElement.addEventListener("click", function () {
+    const form = document.getElementById("userForm");
+    form.style.display = "none";
+});
+
+const cancelBtn = document.querySelector(".cancelbtn");
+
+cancelBtn.addEventListener("click", function () {
+    const form = document.getElementById("userForm");
+    form.style.display = "none";
 });
