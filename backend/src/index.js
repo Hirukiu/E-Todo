@@ -27,12 +27,11 @@ app.get('/', (req, res) => {
 });
 
 app.use("/auth", authRoutes);
-app.use("/todos", todosRoutes);
-app.use("/user", userRoutes);
 
 app.use(cors())
 
 connectDB().then(db => {
+  console.log("Connected to database");
     app.locals.db = db;               // rendre la connexion a la db accessible dans toute les routes
     app.listen(process.env.PORT);
 });
