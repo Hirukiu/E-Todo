@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 
-const { GetAllTodos, CreateTodo } = require('./todos.query');
+const { GetAllTodos } = require('./todos.query');
 
 todos.get('/todos', (req, res) => {
     const db = req.app.locals.db;
