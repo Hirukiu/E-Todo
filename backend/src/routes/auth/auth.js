@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const auth = express.Router();
@@ -22,7 +20,7 @@ async function registerUser(email, name, firstname, password, db) {
         'INSERT INTO user (email, name, firstname, password) VALUES (?, ?, ?, ?)',
         [email, name, firstname, password]
     );
-    return ;
+    return;
 }
 
 function hashPassword(password) {

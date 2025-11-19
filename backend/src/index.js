@@ -26,7 +26,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/Create.html'));
 });
 
-app.use("/auth", authRoutes);
+app.use("/", authRoutes);
+app.use("/", todosRoutes);
+app.use("/", userRoutes);
 
 app.use(cors())
 
