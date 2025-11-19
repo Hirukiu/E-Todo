@@ -25,11 +25,21 @@ users.get('/user/todos', (req, res) => {
 });
 
 const { GetUserById } = require('./user.query');
-users.get('/users/:id', (req, res) => {
-    const db = req.app.locals.db;
-    GetUserById(db, req.params.id).then(rows => {
+users.get('/users/:id', async (req, res, next) => {
+    try {
+        const db = req.app.locals.db;
+        const rows = await GetUserById(db, req.params.id);
+
+        if (!rows || rows.length === 0) {
+            const error = new Error('User not found');
+            error.name = 'NotFoundError';
+            throw error;
+        }
         res.status(200).json(rows);
-    });
+
+    } catch (err) {
+        next(err);
+    }
 });
 
 
@@ -58,6 +68,6 @@ users.delete('/users/:id', (req, res) => {
         res.status(200).json({ msg: `Successfully deleted record number: ${req.params.id}` });
     });
 });
-    
+
 
 module.exports = users;

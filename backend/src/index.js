@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth/auth');
 const todosRoutes = require('./routes/todos/todos');
 const userRoutes = require('./routes/user/user');
+const errorHandler = require('./middlewares/errorMiddleware');
 const cors = require('cors');
 app.use(cors());
 
@@ -31,6 +32,8 @@ app.use("/", todosRoutes);
 app.use("/", userRoutes);
 
 app.use(cors())
+
+app.use(errorHandler);
 
 connectDB().then(db => {
   console.log("Connected to database");
