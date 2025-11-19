@@ -113,19 +113,16 @@ body {
 main{
     padding: min(30px, 7%);
 }
-main p{
-    color: var(--secondary-text-clr);
-    margin-top: 5px;
-    margin-bottom: 15px;
-}
-.container{
-    border: 1px solid var(--line-clr);
-    border-radius: 1em;
-    margin-bottom: 20px;
-    padding: min(3em, 15%);
 
-    h2, p{margin-top: 1em;}
+
+
+
+:root{
+    --primary-clr: rgb(70, 70, 255);
 }
+
+
+
 
 @media(max-width: 800px){
     body{
@@ -134,15 +131,10 @@ main p{
     main{
         padding: 2em 1em 60px 1em;
     }
-    .container{
-        border: none;
-        padding: 0;
-    }
     #sidebar{
         height: 60px;
         width: 100%;
         border-right: none;
-        border-top: 1px solid var(--line-clr);
         padding: 0;
         position: fixed;
         top: unset;
@@ -173,8 +165,6 @@ main p{
             box-sizing: border-box;
             height: 60px;
             width: 100%;
-            background-color: var(--hover-clr);
-            border-top: 1px solid var(--line-clr);
             display: flex;
             justify-content: center;
 
