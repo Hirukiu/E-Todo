@@ -35,12 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const result = await res.json();
-        if (result.status == "Account already exists") 
+        if (result == { msg: "Account already exists"} ) 
             {
-             messageDiv.textContent = "Cet utilisateur existe deja"; messageDiv.style.color = 'red'; 
+             messageDiv.textContent = "Cet utilisateur existe deja";
+             messageDiv.style.color = 'red'; 
             }
         else {
-             messageDiv.textContent = "Compte crée"; messageDiv.style.color = 'green'; 
+             messageDiv.textContent = "Compte crée";
+             messageDiv.style.color = 'green'; 
             }
     });
 });
