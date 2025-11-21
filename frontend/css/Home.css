@@ -105,7 +105,9 @@ body {
 
 .background{
     background-image: url('../assets/business-office-wallpaper.jpg');
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 *{
     margin: 0;
