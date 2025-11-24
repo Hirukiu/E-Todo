@@ -1,0 +1,400 @@
+/*
+:root{
+    --primary-clr: rgb(70, 70, 255);
+}
+main{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins" , sans-serif;
+}
+aside{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    position: relative;
+    width: 1200px;
+    min-height: 850px;
+    margin: 0, auto;
+    padding: 5px;
+    color: white;
+    display: flex;
+    border-radius: 10px;
+    background-color: #373c4f;
+}
+.left{
+    width: 90%;
+    padding: 20px;
+}
+.calendar{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: #878895;
+    border-radius: 5px;
+    background-color: white;
+}
+.calendar::before,
+.calendar::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 12px;
+    height: 97%;
+    border-radius: 0 5px 5px 0;
+    background-color: #d3d5d6d7;
+    transform: translateY(-50%);
+}
+.calendar::before{
+    height: 94%;
+    left: calc(100% + 12px);
+    background-color: rgb(153, 153, 153);
+}
+.calendar .month{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.calendar .month .prev,
+.calendar .month .next{
+    cursor: pointer;
+}
+.calendar .month .prev:hover,
+.calendar .month .next:hover{
+    color: var(--primary-clr);
+}
+.calendar .weekdays{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.calendar .weekdays div{
+    width: 14.28%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.calendar .days{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.calendar .days .day{
+    width: 14.28%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--primary-clr);
+    border: 1px solid #f5f5f5;
+}
+.calendar .day:not(.prev-date, .next-date):hover{
+    color: white;
+    background-color: var(--primary-clr);
+}
+.calendar .days .prev-date,
+.calendar .days .next-date{
+    color: #b3b3b3;
+}
+.calendar .days .active{
+    position: relative;
+    font-size: 2rem;
+    color: white;
+    background-color: var(--primary-clr);
+}
+.calendar .days .active::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 10px 2px var(--primary-clr);
+}
+.calendar .days .today{
+    font-size: 2rem;
+    border: none;
+    color: white;
+    background-color: rgba(70, 70, 255, 0.6);
+}
+.calendar .days .event{
+    position: relative;
+}
+.calendar .days .event::after{
+    content: "";
+    position: absolute;
+    bottom: 10%;
+    left: 15%;
+    width: 75%;
+    height: 6px;
+    border-radius: 30px;
+    transform: translateY(-50%);
+    background-color: var(--primary-clr);
+}
+.calendar .event:hover::after{
+    background-color: white;
+}
+.calendar .active.event::after{
+    background-color: white;
+    bottom: 20%;
+}
+.calendar .active.event{
+    padding-bottom: 10px;
+}
+.calendar .goto-today{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    color: var(--primary-clr);
+}
+.calendar .goto-today .goto{
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--primary-clr);
+}
+.calendar .goto-today .goto input{
+    width: 100%;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 20px;
+    columns: var(--primary-clr);
+    border-radius: 5px;
+}
+.calendar .goto-today button{
+    padding: 5px 10px;
+    border: 1px solid var(--primary-clr);
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--primary-clr);
+    height: 30px;
+}
+.calendar .goto-today button:hover{
+    color: white;
+    background-color: var(--primary-clr);
+}
+*/
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5rem;
+    height: 100%;
+}
+body {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    height: 100%;
+}
+
+.background{
+    background: linear-gradient(rgba(35, 35, 35, 0.6), rgba(35, 35, 35, 0.6)), url('../assets/business-office-wallpaper.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar{
+    box-sizing: border-box;
+    height: 100%;
+    width: 200px;
+    padding: 5px 1em;
+    background-color: rgba(109, 104, 104, 0.79);
+    border-right: 1px solid rgba(31, 30, 30, 0.683);
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.463);
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    align-self: start;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+#sidebar.close{
+    padding: 5px;
+    width: 50px;
+    box-shadow: none;
+}
+#sidebar ul{
+    list-style: none;
+}
+#sidebar > ul > li:first-child{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+    .logo{font-weight: 600;}
+}
+#sidebar ul li.active a{
+    color: rgb(70, 70, 255);
+
+    svg{
+        fill: rgb(70, 70, 255);
+    }
+}
+#sidebar a, #sidebar .dropdown-btn, #sidebar.logo{
+    border-radius: .5em;
+    padding: .85em;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.dropdown-btn{
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+}
+#sidebar svg{
+    flex-shrink: 0;
+}
+#sidebar a span, #sidebar .dropdown-btn span{
+    flex-grow: 1;
+}
+#sidebar a:hover, #sidebar .dropdown-btn:hover{
+    background-color: rgba(134, 126, 126, 0.678);
+}
+#sidebar .sub-menu{
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: 300ms ease-in-out;
+
+    > div{
+        overflow: hidden;
+    }
+}
+#sidebar .sub-menu.show{
+    grid-template-rows: 1fr;
+}
+.dropdown-btn svg{
+    transition: 200ms ease;
+}
+.rotate svg:last-child{
+    rotate: 180deg;
+}
+#sidebar .sub-menu a{
+    padding-left: 2em;
+}
+#toggle-btn{
+    margin-left: auto;
+    padding: 1em;
+    border: none;
+    border-radius: .5em;
+    background: none;
+    cursor: pointer;
+
+    svg{transition: rotate 150ms ease;}
+}
+#toggle-btn:hover{
+    background-color: rgba(134, 126, 126, 0.678);
+}
+
+
+
+
+
+@media(max-width: 800px){
+    body{
+        grid-template-columns: 1fr;
+    }
+    main{
+        padding: 2em 1em 60px 1em;
+    }
+    #sidebar{
+        height: 60px;
+        width: 100%;
+        border-right: none;
+        padding: 0;
+        position: fixed;
+        top: unset;
+        bottom: 0;
+
+        > ul{
+            padding: 0;
+            display: grid;
+            grid-auto-columns: 60px;
+            grid-auto-flow: column;
+            align-items: center;
+            overflow-x: scroll;
+        }
+        ul li{
+            height: 100%;
+        }
+        ul a, ul .dropdown-btn{
+            width: 60px;
+            height: 60px;
+            padding: 0;
+            border-radius: 0;
+            justify-content: center;
+        }
+        ul li .sub-menu.show{
+            position: fixed;
+            bottom: 60px;
+            left: 0;
+            box-sizing: border-box;
+            height: 60px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            > div{
+                overflow-x: auto;
+            }
+            li{
+                display: inline-flex;
+            }
+            a{
+                box-sizing: border-box;
+                padding: 1em;
+                width: auto;
+                justify-content: center;
+
+            }
+        }
+
+        ul li span, ul li:first-child, .dropdown-btn svg:last-child{
+            display: none;
+        }
+    }
+}
