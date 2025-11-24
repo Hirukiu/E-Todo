@@ -1,6 +1,3 @@
-
-
-
 // On récupère la modale
 const modal = document.getElementById("userForm");
 
@@ -28,14 +25,14 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // Envoi au backend
-        const res = await fetch("http://localhost:5000/auth/register", {
+        const res = await fetch("http://localhost:5000/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user)
         });
 
         const result = await res.json();
-        if (result == { msg: "Account already exists"} ) 
+        if (result == { "msg": "Account already exists"} ) 
             {
              messageDiv.textContent = "Cet utilisateur existe deja";
              messageDiv.style.color = 'red'; 
