@@ -21,7 +21,7 @@ body{
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -69,6 +69,12 @@ img.avatar {
   padding: 16px;
 }
 
+.btnregister {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding: 16px;
+}
+
 span.psw {
   float: right;
   padding-top: 16px;
@@ -95,6 +101,8 @@ span.psw {
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+  border-top-right-radius: 20px ;
+  border-top-left-radius: 20px ;
 }
 
 /* The Close Button (x) */
