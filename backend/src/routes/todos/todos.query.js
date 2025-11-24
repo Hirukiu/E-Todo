@@ -26,10 +26,16 @@ async function DeleteTodo(db, id){
     return;
 }
 
+async function todoExists(id, db){
+    const [rows] = await db.query('SELECT id FROM todo WHERE id = ?', [id]);
+    return rows.length > 0;
+}
+
 module.exports = {
     GetAllTodos,
     GetTodoById,
     UpdateTodo,
     CreateTodo,
-    DeleteTodo
-}; 
+    DeleteTodo,
+    todoExists
+};

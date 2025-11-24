@@ -1,24 +1,30 @@
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 
-const errorHandler = (err, req, res, next) => {
-  console.error(err);
+dotenv.config();
+const key = process.env.SECRET;
 
-  if (err.name === 'UnauthorizedError') {
-    return res.status(401).json({ "msg": "No token, authorization denied" });
-  }
+function auth(req, res, next) {
+    const authorization = req.header('Authorization');
 
-  if (err.name === 'TokenError') {
-    return res.status(401).json({ "msg": "Token is not valid" });
-  }
+    if (!authorization) {
+        const error = new Error("No token");
+        error.name = "UnauthorizedError";
+        return next(error);
+    }
 
-  if (err.name === 'NotFoundError') {
-    return res.status(404).json({ "msg": "Not found" });
-  }
+    const parts = authorization.split(" ");
+    const token = parts[1];
 
-  if (err.name === 'BadParametersError') {
-    return res.status(400).json({ "msg": "Bad parameter" });
-  }
+    try {
+        const decoded = jwt.verify(token, key);
+        req.user = decoded;
+        next();
+    } catch {
+        const error = new Error("Invalid token");
+        error.name = "TokenError";
+        next(error);
+    }
+}
 
-  return res.status(500).json({ "msg": "Internal server error" });
-};
-
-module.exports = errorHandler;
+module.exports = auth;

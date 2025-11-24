@@ -32,3 +32,12 @@ export async function DeleteUser(db, id){
     const [result] = await db.query('DELETE FROM user WHERE id = ?', [id]);
     return;
 }
+
+export async function userExists(email, db){
+    const [rows] = await db.query('SELECT email FROM user WHERE email = ?', [email]);
+    return rows.length > 0;
+}
+export async function IdExists(id, db){
+    const [rows] = await db.query('SELECT id FROM user WHERE id = ?', [id]);
+    return rows.length > 0;
+}
