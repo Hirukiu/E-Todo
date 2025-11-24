@@ -40,6 +40,21 @@ app.use(errorHandler);
 
 connectDB().then(db => {
   console.log("Connected to database");
-  app.locals.db = db;               // rendre la connexion a la db accessible dans toute les routes
-  app.listen(process.env.PORT);
+  app.locals.db = db;
+
+  // Maintenant que la DB est connectée, on monte les routes
+  app.use("/", authRoutes);
+  app.use("/", todosRoutes);
+  app.use("/", userRoutes);
+
+  // Middlewares d'erreur
+  app.use(notFound);
+  app.use(errorHandler);
+
+  // Démarrer le serveur
+  const port = process.env.PORT || 5000;
+  app.listen(port, () => console.log(`Server listening on port ${port}`));
+}).catch(err => {
+  console.error("Erreur de connexion à la DB :", err);
+  process.exit(1);
 });
