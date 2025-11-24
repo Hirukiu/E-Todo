@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { IdExists } = require('./user.query');
 const { userExists } = require('./user.query');
-const auth = require('../../middleware/auth');
+const protect = require('../../middleware/auth');
 
 const { GetAllUsers } = require('./user.query');
 users.get('/user', protect, async (req, res, next) => {

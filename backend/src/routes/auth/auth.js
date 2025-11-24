@@ -42,6 +42,7 @@ function generateToken(email, name) {
 }
 
 auth.post('/register', async (req, res, next) => {
+  console.log("register endpoint reached");
   try {
     const db = req.app.locals.db;
     const { email, name, firstname, password } = req.body;

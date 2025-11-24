@@ -27,7 +27,7 @@ app.use(express.json());               //pour que le backend puisse utiliser les
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/Create.html'));
 });
-
+console.log("coucou");
 app.use("/", authRoutes);
 app.use("/", todosRoutes);
 app.use("/", userRoutes);
