@@ -1,14 +1,13 @@
 version: "3.8"
 
 services:
-  web:
+  backend:
     build: ./backend
     container_name: etodo-web
     ports:
       - "5000:5000"
     volumes:
       - ./backend:/usr/src/app
-      - ./frontend:/usr/src/app/frontend
     depends_on:
       - db
     networks:
@@ -20,6 +19,17 @@ services:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  frontend:
+    build: ./frontend
+    container_name: etodo-frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html 
+    networks:
+      - etodo-network
+    depends_on:
+      - backend
 
   db:
     image: mysql:8

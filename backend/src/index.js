@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth/auth');
 const todosRoutes = require('./routes/todos/todos');
@@ -10,33 +9,20 @@ const { errorHandler, notFound } = require('./middleware/notFound');
 const cors = require('cors');
 app.use(cors());
 
-const { connectDB } = require('./config/db');
+dotenv.config();
+app.use(express.json());
 
-app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline';");
-  next();
-});
-
-dotenv.config();                        // recuperer les truc dans .env
-app.use(express.static(path.join(__dirname, '../frontend')));    // Servir les fichiers statiques du frontend
-
-
-app.use(express.json());               //pour que le backend puisse utiliser les information envoyée par le front
-
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/Create.html'));
-});
-console.log("coucou");
+console.log("coucou - Serveur API démarré");
 app.use("/", authRoutes);
 app.use("/", todosRoutes);
 app.use("/", userRoutes);
 
-app.use(cors())
 
 app.use(notFound);
 app.use(errorHandler);
 
+
+const { connectDB } = require('./config/db');
 
 connectDB().then(db => {
   console.log("Connected to database");
@@ -52,9 +38,10 @@ connectDB().then(db => {
   app.use(errorHandler);
 
   // Démarrer le serveur
-  const port = process.env.PORT || 5000;
-  app.listen(port, () => console.log(`Server listening on port ${port}`));
+  app.listen(process.env.PORT || 5000, () => {
+    console.log(`API Server listening on port ${process.env.PORT || 5000}`);
+  });
 }).catch(err => {
-  console.error("Erreur de connexion à la DB :", err);
+  console.error("Failed to connect to database:", err.message);
   process.exit(1);
 });
