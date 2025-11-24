@@ -5,10 +5,12 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth/auth');
 const todosRoutes = require('./routes/todos/todos');
 const userRoutes = require('./routes/user/user');
+const { errorHandler, notFound } = require('./middleware/notFound');
+
 const cors = require('cors');
 app.use(cors());
 
-const {connectDB} = require('./config/db');
+const { connectDB } = require('./config/db');
 
 app.use((req, res, next) => {
   res.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline';");
@@ -25,15 +27,19 @@ app.use(express.json());               //pour que le backend puisse utiliser les
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/Create.html'));
 });
-
+console.log("coucou");
 app.use("/", authRoutes);
 app.use("/", todosRoutes);
 app.use("/", userRoutes);
 
 app.use(cors())
 
+app.use(notFound);
+app.use(errorHandler);
+
+
 connectDB().then(db => {
   console.log("Connected to database");
-    app.locals.db = db;               // rendre la connexion a la db accessible dans toute les routes
-    app.listen(process.env.PORT);
+  app.locals.db = db;               // rendre la connexion a la db accessible dans toute les routes
+  app.listen(process.env.PORT);
 });
