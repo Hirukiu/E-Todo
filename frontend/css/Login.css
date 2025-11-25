@@ -43,12 +43,9 @@ button {
 button:hover {
   opacity: 0.8;
 }
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
+.psw{
+  margin-left: 85%;
+  padding-bottom: 20px;
 }
 
 /* Center the image and position the close button */
@@ -56,6 +53,7 @@ button:hover {
   text-align: center;
   margin: 24px 0 12px 0;
   position: relative;
+  padding-bottom: 15px;
 }
 
 img.avatar {
@@ -63,14 +61,6 @@ img.avatar {
   border-radius: 50%;
 }
 
-.container {
-  padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
 
 /* The Modal (background) */
 .modal {
@@ -81,9 +71,7 @@ span.psw {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.2);
   padding-top: 60px;
 }
 
@@ -93,6 +81,8 @@ span.psw {
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 20px;
+  padding: 20px;
 }
 
 /* The Close Button (x) */

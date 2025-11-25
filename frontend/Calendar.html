@@ -50,7 +50,7 @@
                 </button>
                 <ul class="sub-menu">
                     <div>
-                        <li><a href="#">Folder</a></li>
+                        <li><button class="folder-btn" id="Folder"><span>Folder</span></button></li>
                         <li><a href="#">Task</a></li>
                         <li><a href="#">Project</a></li>
                     </div>
@@ -134,7 +134,16 @@
 
 
 
-    <script>
+    <div id="Folder-mod" class="modal">
+        <div class="folder-content animate">
+            <span class="cls">&times;</span>
+            <p>Bla Bla Folder</p>
+        </div>
+    </div>
+    
+    
+    
+    <script defer>
         const toggleButton = document.getElementById('toggle-btn')
         const sidebar = document.getElementById('sidebar')
 
@@ -166,6 +175,23 @@
                 ul.previousElementSibling.classList.remove('rotate')
             })
         }
+    
+    let modal = document.getElementById('Folder-mod');
+let btn = document.getElementById('Folder');
+
+let span = document.getElementsByClassName("cls")[0];
+
+btn.onclick = function(){
+    modal.style.display = "block";
+}
+span.onclick = function(event){
+    modal.style.display = "none"
+}
+window.onclick = function(event){
+    if(event.target == modal){
+        modal.style.display = "none"
+    }
+}
     </script>
 </body>
 
