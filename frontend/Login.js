@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // On récupère les données du formulaire
         const user = {
             email: document.getElementById("email").value,
-            password: document.getElementById("pwd").value,
+            password: document.getElementById("pwd").value
         };
 
         // Envoi au backend
