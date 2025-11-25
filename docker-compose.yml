@@ -25,7 +25,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./frontend:/usr/share/nginx/html 
+      - ./frontend:/usr/local/apache2/htdocs/
     networks:
       - etodo-network
     depends_on:

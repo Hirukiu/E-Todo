@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const result = await res.json();
         if (result == { "msg": "Account already exists"} ) 
-
             {
              messageDiv.textContent = "Cet utilisateur existe deja";
              messageDiv.style.color = 'red'; 
