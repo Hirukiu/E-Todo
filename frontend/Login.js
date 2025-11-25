@@ -28,6 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user)
         });
+
+        const result = await res.json();
+        if (result.msg === "Invalid Credentials" ) 
+
+            {
+             messageDiv.textContent = "Cette utilisateur n'existe pas";
+             messageDiv.style.color = 'red'; 
+            }
+        if (result.tokens) 
+            {
+                localStorage.setItem("token", result.tokens);
+                window.location.href = "Home.html";
+            }
     });
 });
 const btnforregister = document.querySelector(".btnforlogin");
