@@ -2,15 +2,12 @@ const express = require('express');
 const todos = express.Router();
 const dotenv = require('dotenv');
 
-const protect = require('../../middleware/auth');
-
 dotenv.config();
-
 
 const { todoExists } = require('./todos.query');
 
 const { GetAllTodos } = require('./todos.query');
-todos.get('/todos', protect, async (req, res, next) => {
+todos.get('/todos', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         const rows = await GetAllTodos(db);
@@ -21,7 +18,7 @@ todos.get('/todos', protect, async (req, res, next) => {
 });
 
 const { GetTodoById } = require('./todos.query');
-todos.get('/todos/:id', protect, async (req, res, next) => {
+todos.get('/todos/:id', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         const todoId = req.params.id;
@@ -40,7 +37,7 @@ todos.get('/todos/:id', protect, async (req, res, next) => {
 });
 
 const { CreateTodo } = require('./todos.query');
-todos.post('/todos', protect, async (req, res, next) => {
+todos.post('/todos', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         const { title, description, due_time, user_id, status } = req.body;
@@ -59,7 +56,7 @@ todos.post('/todos', protect, async (req, res, next) => {
 });
 
 const { UpdateTodo } = require('./todos.query');
-todos.put('/todos/:id', protect, async (req, res, next) => {
+todos.put('/todos/:id', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         const todoId = req.params.id;
@@ -86,7 +83,7 @@ todos.put('/todos/:id', protect, async (req, res, next) => {
 });
 
 const { DeleteTodo } = require('./todos.query');
-todos.delete('/todos/:id', protect, async (req, res, next) => {
+todos.delete('/todos/:id', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         const todoId = req.params.id;
