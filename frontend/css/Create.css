@@ -12,12 +12,13 @@ body{
   margin-top: 15%;
   background: radial-gradient(circle,rgba(237, 237, 237, 0.9) 0%, rgba(189, 189, 189, 0.9) 100%);
   align-self: center;
+  text-align: center;
   justify-content: center;
   max-width: 25%;
   padding: 20px;
   margin-left: 450px;
   border-radius: 20px;
-  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.463);
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
 }
 
 /* Full-width input fields */
@@ -29,6 +30,7 @@ input[type=text], input[type=password], input[type=email] {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
+
 
 /* Set a style for all buttons */
 button {
@@ -46,18 +48,13 @@ button:hover {
   opacity: 0.8;
 }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
 
 /* Center the image and position the close button */
 .imgcontainer {
   text-align: center;
-  margin: 24px 0 12px 0;
+  margin: 24px 0 24px 0;
   position: relative;
+  padding-bottom: 10px;
 }
 
 img.avatar {
@@ -65,20 +62,6 @@ img.avatar {
   border-radius: 50%;
 }
 
-.container {
-  padding: 16px;
-}
-
-.btnregister {
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
 
 /* The Modal (background) */
 .modal {
@@ -89,20 +72,22 @@ span.psw {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  padding-top: 60px;
+  background-color: rgba(0,0,0,0.2);
 }
 
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  margin: auto; /* 5% from the top, 15% from the bottom and centered */
+  margin-top: 30px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-  border-top-right-radius: 20px ;
-  border-top-left-radius: 20px ;
+  width: 40%; /* Could be more or less, depending on screen size */
+  height: 80%;
+  border-radius: 20px ;
+  padding: 20px;
+}
+.psw{
+  margin-left: 70%;
 }
 
 /* The Close Button (x) */
@@ -137,13 +122,7 @@ span.psw {
   to {transform: scale(1)}
 }
 
-/* Change styles for span and cancel button on extra small screens */
+/* Change styles for span */
 @media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
+  
 }
