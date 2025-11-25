@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // Envoi au backend
-        const res = await fetch("http://localhost:8080/login", {
+        const res = await fetch("http://localhost:5000/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user)

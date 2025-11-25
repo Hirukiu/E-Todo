@@ -1,5 +1,3 @@
-FROM nginx:alpine
-COPY . /usr/share/nginx/html/
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+FROM httpd:alpine
+COPY . /usr/local/apache2/htdocs/
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
