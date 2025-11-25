@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth/auth');
 const todosRoutes = require('./routes/todos/todos');
 const userRoutes = require('./routes/user/user');
+const protect = require('./middleware/auth');
 const { errorHandler, notFound } = require('./middleware/notFound');
 
 const cors = require('cors');
@@ -28,8 +29,12 @@ connectDB().then(db => {
   console.log("Connected to database");
   app.locals.db = db;
 
-  // Maintenant que la DB est connectée, on monte les routes
+  //routes auth car elles n'ont pas besoin d'etre protregées
   app.use("/", authRoutes);
+
+  //proteger les route par le token
+  app.use(protect);
+
   app.use("/", todosRoutes);
   app.use("/", userRoutes);
 
@@ -42,6 +47,6 @@ connectDB().then(db => {
     console.log(`API Server listening on port ${process.env.PORT || 5000}`);
   });
 }).catch(err => {
-  console.error("Failed to connect to database:", err.message);
+  console.error("Failed to connect", err.message);
   process.exit(1);
-});
+}); 

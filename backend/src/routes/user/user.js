@@ -4,10 +4,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { IdExists } = require('./user.query');
 const { userExists } = require('./user.query');
-const protect = require('../../middleware/auth');
 
 const { GetAllUsers } = require('./user.query');
-users.get('/user', protect, async (req, res, next) => {
+users.get('/user', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         const rows = await GetAllUsers(db);
@@ -19,7 +18,7 @@ users.get('/user', protect, async (req, res, next) => {
 
 
 const { GetAllUsersTodos } = require('./user.query');
-users.get('/user/todos', protect, async (req, res, next) => {
+users.get('/user/todos', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         const rows = await GetAllUsersTodos(db);
@@ -30,7 +29,7 @@ users.get('/user/todos', protect, async (req, res, next) => {
 });
 
 const { GetUserById } = require('./user.query');
-users.get('/users/:id', protect, async (req, res, next) => {
+users.get('/users/:id', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         if (!await IdExists(req.params.id, db)) {
@@ -54,7 +53,7 @@ users.get('/users/:id', protect, async (req, res, next) => {
 
 
 const { GetUserByEmail } = require('./user.query');
-users.get('/users/:email', protect, async (req, res, next) => {
+users.get('/users/:email', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         if (!await userExists(req.params.email, db)) {
@@ -77,7 +76,7 @@ users.get('/users/:email', protect, async (req, res, next) => {
 });
 
 const { UpdateUser } = require('./user.query');
-users.put('/users/:id', protect, async (req, res, next) => {
+users.put('/users/:id', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         if (!await IdExists(req.params.id, db)) {
@@ -102,7 +101,7 @@ users.put('/users/:id', protect, async (req, res, next) => {
 
 
 const { DeleteUser } = require('./user.query');
-users.delete('/users/:id', protect, async (req, res, next) => {
+users.delete('/users/:id', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         if (!await IdExists(req.params.id, db)) {
