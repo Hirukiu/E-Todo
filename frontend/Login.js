@@ -23,23 +23,26 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // Envoi au backend
-        const res = await fetch("http://localhost:8080/login", {
+        const res = await fetch("http://localhost:5000/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user)
         });
+        
 
         const result = await res.json();
+        console.log(result)
         if (result.msg === "Invalid Credentials" ) 
 
             {
              messageDiv.textContent = "Cette utilisateur n'existe pas";
              messageDiv.style.color = 'red'; 
             }
-        if (result.tokens) 
+        if (result.token) 
             {
-                localStorage.setItem("token", result.tokens);
-                window.location.href = "Home.html";
+                localStorage.setItem("token", result.token);
+                localStorage.setItem("email", document.getElementById("email").value);
+                window.location.href = "http://localhost:8080/Home.html";
             }
     });
 });
@@ -58,11 +61,5 @@ closeElement.addEventListener("click", function () {
     form.style.display = "none";
 });
 
-const cancelBtn = document.querySelector(".cancelbtn");
-
-cancelBtn.addEventListener("click", function () {
-    const form = document.getElementById("userFormLogin");
-    form.style.display = "none";
-});
 
 

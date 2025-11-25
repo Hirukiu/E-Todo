@@ -44,6 +44,7 @@
     </nav>
 
     <main>
+<<<<<<< HEAD
         <h1>To do :</h1>
         <div class="todo">
             
@@ -53,6 +54,9 @@
 
 
 
+=======
+        <div id="task-container"></div>
+>>>>>>> b3b3956c5be055490c96362076f0401900b7c583
     </main>
 
 
@@ -68,57 +72,6 @@
 
 
 
-
-<script defer>
-    const toggleButton = document.getElementById('toggle-btn')
-        const sidebar = document.getElementById('sidebar')
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('close')
-            toggleButton.classList.toggle('rotate')
-
-            closeAllSubMenus()
-        }
-
-
-        function toggleSubMenu(button) {
-
-            if (!button.nextElementSibling.classList.contains('show')) {
-                closeAllSubMenus()
-            }
-
-            button.nextElementSibling.classList.toggle('show')
-            button.classList.toggle('rotate')
-
-            if (sidebar.classList.contains('close')) {
-                sidebar.classList.toggle('close')
-                toggleButton.classList.toggle('rotate')
-            }
-        }
-        function closeAllSubMenus() {
-            Array.from(sidebar.getElementsByClassName('show')).forEach(ul => {
-                ul.classList.remove('show')
-                ul.previousElementSibling.classList.remove('rotate')
-            })
-        }
-
-let modal = document.getElementById('Folder-mod');
-let btn = document.getElementById('Folder');
-
-let span = document.getElementsByClassName("cls")[0];
-
-btn.onclick = function(){
-    modal.style.display = "block";
-}
-span.onclick = function(event){
-    modal.style.display = "none"
-}
-window.onclick = function(event){
-    if(event.target == modal){
-        modal.style.display = "none"
-    }
-}
-
-</script>
+<script src="Home.js" defer></script>
 </body>
 </html>

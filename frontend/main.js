@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // Envoi au backend
-        const res = await fetch("http://localhost:8080/register", {
+        const res = await fetch("http://localhost:5000/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user)
@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const result = await res.json();
         if (result == { "msg": "Account already exists"} ) 
-
             {
              messageDiv.textContent = "Cet utilisateur existe deja";
              messageDiv.style.color = 'red'; 
