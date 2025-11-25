@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (result.tokens) 
             {
                 localStorage.setItem("token", result.tokens);
-                window.location.href = "Home.html";
+                window.location.href = "http://localhost:8080/Home.html";
             }
     });
 });
@@ -58,11 +58,5 @@ closeElement.addEventListener("click", function () {
     form.style.display = "none";
 });
 
-const cancelBtn = document.querySelector(".cancelbtn");
-
-cancelBtn.addEventListener("click", function () {
-    const form = document.getElementById("userFormLogin");
-    form.style.display = "none";
-});
 
 
