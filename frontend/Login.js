@@ -23,22 +23,25 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // Envoi au backend
-        const res = await fetch("http://localhost:8080/login", {
+        const res = await fetch("http://localhost:5000/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user)
         });
+        
 
         const result = await res.json();
+        console.log(result)
         if (result.msg === "Invalid Credentials" ) 
 
             {
              messageDiv.textContent = "Cette utilisateur n'existe pas";
              messageDiv.style.color = 'red'; 
             }
-        if (result.tokens) 
+        if (result.token) 
             {
-                localStorage.setItem("token", result.tokens);
+                localStorage.setItem("token", result.token);
+                localStorage.setItem("email", document.getElementById("email").value);
                 window.location.href = "http://localhost:8080/Home.html";
             }
     });
