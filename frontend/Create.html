@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/Create.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/Create.css">
 </head>
+
 <body class="background">
-<div class="Login">
-<h2>Modal Register Form</h2>
+  <div class="Login">
+    <h2>Modal Register Form</h2>
 
-<button class="btnforregister">Register</button>
-</div>
-<div id="userForm" class="modal">
-  
-  <form class="modal-content animate" action="/" method="post">
-    <div class="imgcontainer">
-      <span class="close" title="Close Modal">&times;</span>
-    </div>
-    
-    <div class="container">
-      <label for="uname"><b>First Name</b></label>
-      <input type="text" placeholder="Enter First Name" name="fname" id="fname" required>
+    <button class="btnforregister">Register</button>
+  </div>
+  <div id="userForm" class="modal">
 
-      <label for="psw"><b>Name</b></label>
-      <input type="text" placeholder="Enter Name" name="name" id="name" required>
+    <form class="modal-content animate" action="/" method="post">
+      <div class="imgcontainer">
+        <span class="close" title="Close Modal">&times;</span>
+      </div>
 
-      <label for="psw"><b>Email</b></label>
-      <input type="email" placeholder="Enter Email" name="email" id="email" required>
+      <div class="container">
+        <label for="uname"><b>First Name</b></label>
+        <input type="text" placeholder="Enter First Name" name="fname" id="fname" required>
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="pwd" id="pwd" required>
-        
-      <button type="submit">Register me</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
+        <label for="psw"><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" name="name" id="name" required>
 
-    <div class="btnregister" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
-</div>
-<div id="messageDiv"></div>
+        <label for="psw"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="email" id="email" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="pwd" id="pwd" required>
+
+        <button type="submit">Register me</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+      </div>
+
+      <div class="psw">
+        <span>Forgot </span><a href="">password</a>
+      </div>
+
+    </form>
+  </div>
+  <div id="messageDiv"></div>
 
 
-<script src="main.js" defer></script>
+  <script src="main.js" defer></script>
 
 
 </body>
+
 </html>

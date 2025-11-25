@@ -60,10 +60,3 @@ closeElement.addEventListener("click", function () {
     const form = document.getElementById("userForm");
     form.style.display = "none";
 });
-
-const cancelBtn = document.querySelector(".cancelbtn");
-
-cancelBtn.addEventListener("click", function () {
-    const form = document.getElementById("userForm");
-    form.style.display = "none";
-});
