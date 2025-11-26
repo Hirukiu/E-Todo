@@ -1,49 +1,57 @@
-const resp = fetch("http://localhost:5000/users/" + localStorage.getItem('email'),
-    {
-        method: "GET",
-        headers:
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const res = await fetch("http://localhost:5000/users/" + localStorage.getItem('email'),
         {
-            "Content-Type": "application/json",
-            "Authorization": localStorage.getItem('token')
-        },
-        
-    }
-);
-localStorage.setItem(resp.json().id);
+            method: "GET",
+            headers:
+            {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('token')
+            },
 
+        }
+    );
+    const result = await res.json();
+    console.log(result);
+    localStorage.setItem('id', result[0].id);
+    
 
-const res = fetch("http://localhost:5000/users/" + localStorage.getItem('id'),
-    {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": localStorage.getItem('token')
-        },
-    }) // endpoint API
-    .then(res => res.json())
-    .then(tasks => {
-        const container = document.getElementById("task-container");
+    fetch("http://localhost:5000/user/" + localStorage.getItem('id') + "/todos",
+        {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('token')
+            },
+        }) // endpoint API
+        .then(res => res.json())
+        .then(tasks => {
+            console.log(tasks);
+            const container = document.getElementById("task-container");
 
-        tasks.forEach(task => {
-            // 1. Créer un div pour la tâche
-            const taskDiv = document.createElement("div");
-            taskDiv.classList.add("task");
+            tasks.forEach(task => {
+                // 1. Créer un div pour la tâche
+                const taskDiv = document.createElement("div");
+                taskDiv.classList.add("task");
 
-            // 2. Ajouter le contenu
-            taskDiv.innerHTML = `
+                // 2. Ajouter le contenu
+                taskDiv.innerHTML = `
+                <div class="todo">
                 <h3>${task.title}</h3>
                 <p>${task.description}</p>
                 <p>${task.due_time}</p>
                 <p>${task.status}</p>
                 <button class="delete-btn" data-id="${task.id}">Supprimer</button>
+                </div>
             `;
 
-            // 3. Ajouter au conteneur
-            container.appendChild(taskDiv);
-        });
-    })
+                // 3. Ajouter au conteneur
+                container.appendChild(taskDiv);
+            });
+        })
 
-
+});
 
 
 

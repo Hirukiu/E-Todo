@@ -72,13 +72,11 @@ auth.post('/register', async (req, res, next) => {
 
     if (!await userExists(email, db)) {
       await registerUser(email, name, firstname, hashedPassword, db);
-
-      // --- NOUVEAU: Récupérer l'utilisateur juste créé pour obtenir l'ID ---
+      
       const [newRows] = await db.query('SELECT id, email, name FROM user WHERE email = ?', [email]);
       const newUser = newRows[0];
-      // --------------------------------------------------------------------
 
-      const token = generateToken(newUser.id, newUser.email, newUser.name); // 👈 PASSAGE de l'ID
+      const token = generateToken(newUser.id, newUser.email, newUser.name); 
       return res.status(201).json({ token });
     } else {
       res.status(409).json({ "msg": "Account already exists" });

@@ -26,7 +26,7 @@ app.use(errorHandler);
 const { connectDB } = require('./config/db');
 
 connectDB().then(db => {
-  console.log("Connected to database");
+  console.log("test");
   app.locals.db = db;
 
   //routes auth car elles n'ont pas besoin d'etre protregées

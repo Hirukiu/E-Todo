@@ -27,9 +27,56 @@ users.get('/user/todos', async (req, res, next) => {
         next(err);
     }
 });
-
+const { GetUserByEmail } = require('./user.query');
 const { GetUserById } = require('./user.query');
-users.get('/users/:id', async (req, res, next) => {
+users.get('/users/:param', async (req, res, next) => {
+
+    try {
+        let rows;
+        if (req.params.param.includes('@')) {
+            console.log("email detected");
+            const db = req.app.locals.db;
+            if (!await userExists(req.params.param, db)) {
+                const error = new Error('User not found');
+                error.name = 'UserFoundError';
+                throw error;
+            }
+            console.log("query email");
+            rows = await GetUserByEmail(db, req.params.param);
+            console.log(rows);
+            console.log("after query email");
+
+            if (!rows || rows.length === 0) {
+                const error = new Error('User not found');
+                error.name = 'UserFoundError';
+                throw error;
+            }
+        }
+        else {
+            console.log("id detected");
+            const db = req.app.locals.db;
+            if (!await IdExists(req.params.param, db)) {
+                const error = new Error('User not found');
+                error.name = 'UserFoundError';
+                throw error;
+            }
+            rows = await GetUserById(db, req.params.param);
+
+            if (!rows || rows.length === 0) {
+                const error = new Error('User not found');
+                error.name = 'UserFoundError';
+                throw error;
+            }
+        }
+        console.log(rows + "test");
+        res.status(200).json(rows);
+    } catch (err) {
+        next(err);
+    }
+});
+
+const { GetAllUserTodos } = require('./user.query');
+users.get('/user/:id/todos', async (req, res, next) => {
     try {
         const db = req.app.locals.db;
         if (!await IdExists(req.params.id, db)) {
@@ -37,39 +84,16 @@ users.get('/users/:id', async (req, res, next) => {
             error.name = 'NotFoundError';
             throw error;
         }
-        const rows = await GetUserById(db, req.params.id);
-
-        if (!rows || rows.length === 0) {
-            const error = new Error('User not found');
-            error.name = 'NotFoundError';
-            throw error;
-        }
-
+        const rows = await GetAllUserTodos(db, req.params.id);
         res.status(200).json(rows);
     } catch (err) {
         next(err);
     }
 });
 
-
-const { GetUserByEmail } = require('./user.query');
 users.get('/users/:email', async (req, res, next) => {
     try {
-        const db = req.app.locals.db;
-        if (!await userExists(req.params.email, db)) {
-            const error = new Error('User not found');
-            error.name = 'NotFoundError';
-            throw error;
-        }
-        const rows = await GetUserByEmail(db, req.params.email);
 
-        if (!rows || rows.length === 0) {
-            const error = new Error('User not found');
-            error.name = 'NotFoundError';
-            throw error;
-        }
-
-        res.status(200).json(rows);
     } catch (err) {
         next(err);
     }

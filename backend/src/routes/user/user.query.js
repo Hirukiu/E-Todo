@@ -50,6 +50,11 @@ async function IdExists(id, db){
     return rows.length > 0;
 }
 
+async function GetAllUserTodos(db,id)
+{
+    const [rows] = await db.query('SELECT id, title, description, created_at, due_time, user_id, status FROM todo WHERE user_id = ?', [id]);
+    return rows;
+}
 module.exports = {
     GetAllUsers,
     GetUserTodos,
@@ -59,5 +64,6 @@ module.exports = {
     UpdateUser,
     DeleteUser,
     userExists,
+    GetAllUserTodos,
     IdExists
 };

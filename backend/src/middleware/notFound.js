@@ -1,8 +1,6 @@
 const errorHandler = (err, req, res, next) => {
   console.error(err);
 
-
-
   if (err.name === 'UnauthorizedError') {
     return res.status(401).json({ "msg": "No token, authorization denied" });
   }
@@ -17,6 +15,10 @@ const errorHandler = (err, req, res, next) => {
 
   if (err.name === 'BadParametersError') {
     return res.status(400).json({ "msg": "Bad parameter" });
+  }
+  
+  if (err.name === 'UserFoundError') {
+    return res.status(404).json({ "msg": "User not found" });
   }
 
   return res.status(500).json({ "msg": "Internal server error" });
