@@ -13,9 +13,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     );
     const result = await res.json();
-    console.log(result);
+    
+
     localStorage.setItem('id', result[0].id);
     
+    console.log(result);
 
     fetch("http://localhost:5000/user/" + localStorage.getItem('id') + "/todos",
         {
@@ -27,10 +29,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         }) // endpoint API
         .then(res => res.json())
         .then(tasks => {
-            console.log(tasks);
             const container = document.getElementById("task-container");
 
             tasks.forEach(task => {
+
+            
+
                 // 1. Créer un div pour la tâche
                 const taskDiv = document.createElement("div");
                 taskDiv.classList.add("task");
@@ -43,8 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <p>${task.due_time}</p>
                 <p>${task.status}</p>
                 <button class="delete-btn" data-id="${task.id}">Supprimer</button>
-                </div>
-            `;
+                </div>`;
 
                 // 3. Ajouter au conteneur
                 container.appendChild(taskDiv);
