@@ -4,6 +4,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { IdExists } = require('./user.query');
 const { userExists } = require('./user.query');
+const jwt = require('jsonwebtoken');
+const key = process.env.SECRET;
+
 
 const { GetAllUsers } = require('./user.query');
 users.get('/user', async (req, res, next) => {
@@ -17,11 +20,13 @@ users.get('/user', async (req, res, next) => {
 });
 
 
-const { GetAllUsersTodos } = require('./user.query');
+const { GetAllUserTodos } = require('./user.query');
 users.get('/user/todos', async (req, res, next) => {
     try {
+        const token = req.header('Authorization');
+        const decodedPayload = jwt.verify(token, key);
         const db = req.app.locals.db;
-        const rows = await GetAllUsersTodos(db);
+        const rows = await GetAllUserTodos(db, decodedPayload.id);
         res.status(200).json(rows);
     } catch (err) {
         next(err);
@@ -75,21 +80,20 @@ users.get('/users/:param', async (req, res, next) => {
     }
 });
 
-const { GetAllUserTodos } = require('./user.query');
-users.get('/user/:id/todos', async (req, res, next) => {
-    try {
-        const db = req.app.locals.db;
-        if (!await IdExists(req.params.id, db)) {
-            const error = new Error('User not found');
-            error.name = 'NotFoundError';
-            throw error;
-        }
-        const rows = await GetAllUserTodos(db, req.params.id);
-        res.status(200).json(rows);
-    } catch (err) {
-        next(err);
-    }
-});
+// users.get('/user/:id/todos', async (req, res, next) => {
+//     try {
+//         const db = req.app.locals.db;
+//         if (!await IdExists(req.params.id, db)) {
+//             const error = new Error('User not found');
+//             error.name = 'NotFoundError';
+//             throw error;
+//         }
+//         const rows = await GetAllUserTodos(db, req.params.id);
+//         res.status(200).json(rows);
+//     } catch (err) {
+//         next(err);
+//     }
+// });
 
 users.get('/users/:email', async (req, res, next) => {
     try {

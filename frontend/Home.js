@@ -15,32 +15,41 @@ document.addEventListener("DOMContentLoaded", async () => {
     const result = await res.json();
 
 
+
     localStorage.setItem('id', result[0].id);
 
 
-
-    fetch("http://localhost:5000/user/" + localStorage.getItem('id') + "/todos",
-        {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": localStorage.getItem('token')
-            },
-        }) // endpoint API
-        .then(res => res.json())
-        .then(tasks => {
-            const container = document.getElementById("task-container");
-
-            tasks.forEach(task => {
+    if (result.msg === "Token is not valid" || result.msg === "No token, authorization denied") {
+        console.log("Token not valid");
+        console.log(result.msg);
+        window.location.href = "http://localhost:8080/index.html";
+    }
+    else {
+        localStorage.setItem('id', result[0].id);
 
 
+        fetch("http://localhost:5000/user/todos",
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem('token')
+                },
+            }) // endpoint API
+            .then(res => res.json())
+            .then(tasks => {
+                const container = document.getElementById("task-container");
 
-                // 1. Créer une div pour la tâche
-                const taskDiv = document.createElement("div");
-                taskDiv.classList.add("task");
+                tasks.forEach(task => {
 
-                // 2. Ajouter le contenu
-                taskDiv.innerHTML = `
+
+
+                    // 1. Créer une div pour la tâche
+                    const taskDiv = document.createElement("div");
+                    taskDiv.classList.add("task");
+
+                    // 2. Ajouter le contenu
+                    taskDiv.innerHTML = `
                 <div class="todo">
                 <h3>${task.title}</h3>
                 <p>${task.description}</p>
@@ -49,13 +58,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <button class="delete-btn" data-id="${task.id}">Supprimer</button>
                 </div>`;
 
-            // 3. Ajouter au conteneur
-            container.appendChild(taskDiv);
-            });
-            
-        });
+                    // 3. Ajouter au conteneur
+                    container.appendChild(taskDiv);
+                });
 
-});
+            });
+
+    }});
 
 
 document.querySelectorAll(".delete-btn").forEach(btn => {

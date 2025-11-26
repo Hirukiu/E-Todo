@@ -24,7 +24,7 @@ const errorHandler = (err, req, res, next) => {
   return res.status(500).json({ "msg": "Internal server error" });
 };
 
-// Middleware pour les routes qui existent pas
+// middleware pour les routes qui existent pas
 function notFound(req, res, next) {
   const error = new Error(`Route ${req.originalUrl} not found`);
   error.name = "NotFoundError";

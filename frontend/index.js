@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const result = await res.json();
         console.log(result)
         if (result.msg === "Invalid Credentials" ) 
-
             {
              messageDiv.textContent = "Cette utilisateur n'existe pas";
              messageDiv.style.color = 'red'; 

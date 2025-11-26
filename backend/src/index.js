@@ -13,7 +13,7 @@ app.use(cors());
 dotenv.config();
 app.use(express.json());
 
-console.log("coucou - Serveur API démarré");
+console.log("coucou serveur API demarée");
 
 const { connectDB } = require('./config/db');
 

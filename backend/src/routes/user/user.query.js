@@ -9,10 +9,7 @@ async function GetUserTodos(db, userId){
     return rows;
 }
 
-async function GetAllUsersTodos (db){
-    const [rows] =  await db.query('SELECT id, title, description, created_at, due_time, user_id, status FROM todo');
-    return rows;
-}
+
 
 
 async function GetUserById(db, id){
@@ -58,7 +55,6 @@ async function GetAllUserTodos(db,id)
 module.exports = {
     GetAllUsers,
     GetUserTodos,
-    GetAllUsersTodos,
     GetUserById,
     GetUserByEmail,
     UpdateUser,
