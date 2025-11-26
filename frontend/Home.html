@@ -26,8 +26,7 @@
                 </button>
                 <ul class="sub-menu">
                     <div>
-                    <li><button class="folder-btn" id="Folder"><span>Folder</span></button></li>
-                    <li><a href="#">Task</a></li>
+                    <li><button class="folder-btn" id="Folder"><span>Task</span></button></li>
                     <li><a href="#">Project</a></li>
                     </div>
                 </ul>
@@ -37,26 +36,21 @@
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-40q0-17 11.5-28.5T280-880q17 0 28.5 11.5T320-840v40h320v-40q0-17 11.5-28.5T680-880q17 0 28.5 11.5T720-840v40h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z"/></svg>
                     <span>Calendar</span></a>
             </li>
-            <li>
-                <a href="#"><span></span></a>
-            </li>
         </ul>
     </nav>
 
     <main>
-<<<<<<< HEAD
         <h1>To do :</h1>
         <div class="todo">
-            
-
+            <div id="task-container" class="events">
+                
+            </div>
         </div>
 
 
 
 
-=======
-        <div id="task-container"></div>
->>>>>>> b3b3956c5be055490c96362076f0401900b7c583
+        
     </main>
 
 
@@ -64,7 +58,22 @@
     <div id="Folder-mod" class="modal">
         <div class="folder-content animate">
             <span class="cls">&times;</span>
-            <p>Bla Bla Folder</p>
+            <h2>Bla Bla Task</h2>
+            
+                <div class="add-event-wrapper">
+                    <div class="add-event-header">
+                        <div class="titlev">Add Task</div>
+                        <i class="fas fa-times closev"></i>
+                    </div>
+                    <div class="add-event-body">
+                        <div class="add-event-input">
+                            <input type="text" placeholder="Task Name" class="task-name">
+                        </div>
+                        <div class="add-event-input">
+                            <input type="text" placeholder="Task Time From" class="task-time-from">
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 
@@ -72,6 +81,106 @@
 
 
 
-<script src="Home.js" defer></script>
+<script>
+/*    const resp = fetch("http://localhost:5000/users/" + localStorage.getItem('email'),
+    {
+         method: "GET",
+        headers:
+        {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem('token')
+        },
+            
+    }
+    );
+    localStorage.setItem(resp.json().id);
+
+
+    const res = fetch("http://localhost:5000/users/" + localStorage.getItem('id'),
+        {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('token')
+            },
+        }) // endpoint API
+        .then(res => res.json())
+        .then(tasks => {
+            const container = document.getElementById("task-container");
+
+            tasks.forEach(task => {
+                // 1. Créer un div pour la tâche
+                const taskDiv = document.createElement("div");
+                taskDiv.classList.add("task");
+
+                // 2. Ajouter le contenu
+                taskDiv.innerHTML = `
+                    <h3>${task.title}</h3>
+                    <p>${task.description}</p>
+                    <p>${task.due_time}</p>
+                    <p>${task.status}</p>
+                    <button class="delete-btn" data-id="${task.id}">Supprimer</button>
+                    `;
+
+                // 3. Ajouter au conteneur
+                container.appendChild(taskDiv);
+            });
+        })
+*/
+
+
+
+
+    const toggleButton = document.getElementById('toggle-btn')
+    const sidebar = document.getElementById('sidebar')
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('close')
+        toggleButton.classList.toggle('rotate')
+
+        closeAllSubMenus()
+
+    }
+
+
+    function toggleSubMenu(button) {
+
+        if (!button.nextElementSibling.classList.contains('show')) {
+            closeAllSubMenus()
+        }
+
+        button.nextElementSibling.classList.toggle('show')
+        button.classList.toggle('rotate')
+
+        if (sidebar.classList.contains('close')) {
+            sidebar.classList.toggle('close')
+            toggleButton.classList.toggle('rotate')
+        }
+    }
+    function closeAllSubMenus() {
+        Array.from(sidebar.getElementsByClassName('show')).forEach(ul => {
+            ul.classList.remove('show')
+            ul.previousElementSibling.classList.remove('rotate')
+        })
+    }
+
+    let modal = document.getElementById('Folder-mod');
+    let btn = document.getElementById('Folder');
+
+    let span = document.getElementsByClassName("cls")[0];
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+    span.onclick = function (event) {
+        modal.style.display = "none"
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none"
+        }
+    }
+
+</script>
 </body>
 </html>
