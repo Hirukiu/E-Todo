@@ -50,8 +50,7 @@
                 </button>
                 <ul class="sub-menu">
                     <div>
-                        <li><button class="folder-btn" id="Folder"><span>Folder</span></button></li>
-                        <li><a href="#">Task</a></li>
+                        <li><button class="folder-btn" id="Folder"><span>Task</span></button></li>
                         <li><a href="#">Project</a></li>
                     </div>
                 </ul>
@@ -137,13 +136,13 @@
     <div id="Folder-mod" class="modal">
         <div class="folder-content animate">
             <span class="cls">&times;</span>
-            <p>Bla Bla Folder</p>
+            <p>Bla Bla Task</p>
         </div>
     </div>
     
     
     
-    <script defer>
+    <script>
         const toggleButton = document.getElementById('toggle-btn')
         const sidebar = document.getElementById('sidebar')
 
@@ -176,22 +175,22 @@
             })
         }
     
-    let modal = document.getElementById('Folder-mod');
-let btn = document.getElementById('Folder');
+        let modal = document.getElementById('Folder-mod');
+        let btn = document.getElementById('Folder');
 
-let span = document.getElementsByClassName("cls")[0];
+        let span = document.getElementsByClassName("cls")[0];
 
-btn.onclick = function(){
-    modal.style.display = "block";
-}
-span.onclick = function(event){
-    modal.style.display = "none"
-}
-window.onclick = function(event){
-    if(event.target == modal){
-        modal.style.display = "none"
-    }
-}
+        btn.onclick = function(){
+            modal.style.display = "block";
+        }
+        span.onclick = function(event){
+            modal.style.display = "none"
+        }
+        window.onclick = function(event){
+            if(event.target == modal){
+                modal.style.display = "none"
+            }
+        }
     </script>
 </body>
 

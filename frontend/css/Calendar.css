@@ -296,7 +296,7 @@ body {
 .modal{
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 19;
     left: 0;
     top: 0;
     width: 100%;
@@ -304,11 +304,20 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
 }
 .folder-content{
-    background-color: #373c4f97;
+    color: white;
+    background-color: #373c4f;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    border: 1px solid black;
+    width: auto;
+    height: auto;
+    margin-top: 15%;
+    align-self: center;
+    justify-content: center;
+    max-width: 25%;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.463);
 }
 .cls{
     color: #aaa;

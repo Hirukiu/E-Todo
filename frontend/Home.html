@@ -44,9 +44,8 @@
                 </button>
                 <ul class="sub-menu">
                     <div>
-                        <li><button class="folder-btn" id="Folder"><span>Folder</span></button></li>
-                        <li><a href="#">Task</a></li>
-                        <li><a href="#">Project</a></li>
+                    <li><button class="folder-btn" id="Folder"><span>Task</span></button></li>
+                    <li><a href="#">Project</a></li>
                     </div>
                 </ul>
             </li>
@@ -59,26 +58,46 @@
                     </svg>
                     <span>Calendar</span></a>
             </li>
-            <li>
-                <a href="#"><span></span></a>
-            </li>
         </ul>
     </nav>
 
     <main>
-        <div id="task-container">
-            <div id="Folder-mod" class="modal">
-                <div class="folder-content animate">
-                    <span class="cls">&times;</span>
-                    <p>Bla Bla Folder</p>
-                </div>
+        <h1>To do :</h1>
+        <div class="todo">
+            <div id="task-container" class="events">
+                
             </div>
-
         </div>
+
+
+
+
+        
     </main>
 
 
 
+    <div id="Folder-mod" class="modal">
+        <div class="folder-content animate">
+            <span class="cls">&times;</span>
+            <h2>Bla Bla Task</h2>
+            
+                <div class="add-event-wrapper">
+                    <div class="add-event-header">
+                        <div class="titlev">Add Task</div>
+                        <i class="fas fa-times closev"></i>
+                    </div>
+                    <div class="add-event-body">
+                        <div class="add-event-input">
+                            <input type="text" placeholder="Task Name" class="task-name">
+                        </div>
+                        <div class="add-event-input">
+                            <input type="text" placeholder="Task Time From" class="task-time-from">
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
 
 
 
