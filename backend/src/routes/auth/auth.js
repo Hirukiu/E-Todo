@@ -98,7 +98,6 @@ auth.post('/login', async (req, res, next) => {
       throw error;
     }
 
-    // La requête SQL doit récupérer l'ID ! (SELECT id, ... au lieu de SELECT *)
     const [rows] = await db.query('SELECT id, email, name, password FROM user WHERE email = ?', [email]);
 
     if (rows.length === 0) {
@@ -108,7 +107,7 @@ auth.post('/login', async (req, res, next) => {
     const user = rows[0];
 
     if (verifyPassword(password, user.password)) {
-      const token = generateToken(user.id, user.email, user.name); // 👈 PASSAGE de l'ID
+      const token = generateToken(user.id, user.email, user.name); 
       res.status(200).json({ "token": token });
     } else {
       res.status(401).json({ "msg": "Invalid credentials" });

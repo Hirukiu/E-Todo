@@ -13,8 +13,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
     const result = await res.json();
 
-    localStorage.setItem('token', "test");
-
     if (result.msg === "Token is not valid" || result.msg === "No token, authorization denied") {
         console.log("Token not valid");
         console.log(result.msg);
@@ -23,9 +21,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     else {
         localStorage.setItem('id', result[0].id);
 
-        console.log(result);
 
-        fetch("http://localhost:5000/user/" + localStorage.getItem('id') + "/todos",
+        fetch("http://localhost:5000/user/todos",
             {
                 method: "GET",
                 headers: {
