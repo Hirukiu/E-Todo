@@ -166,6 +166,13 @@ addEventSubmit.addEventListener("click", () => {
 
     const timeFrom = convertTime(eventTimeFrom);
     const timeTo = convertTime(eventTimeTo);
+
+    const newEvent = {
+        title: eventTitle,
+        time: timeFrom + " - " + timeTo,
+    };
+    let eventAdded = false;
+    
 });
 
 function convertTime(time) {
