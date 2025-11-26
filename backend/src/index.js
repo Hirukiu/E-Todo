@@ -14,14 +14,6 @@ dotenv.config();
 app.use(express.json());
 
 console.log("coucou - Serveur API démarré");
-app.use("/", authRoutes);
-app.use("/", todosRoutes);
-app.use("/", userRoutes);
-
-
-app.use(notFound);
-app.use(errorHandler);
-
 
 const { connectDB } = require('./config/db');
 

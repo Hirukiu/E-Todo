@@ -5,16 +5,16 @@ dotenv.config();
 const key = process.env.SECRET;
 
 function auth(req, res, next) {
-    const authorization = req.header('Authorization');
+    console.log("auth middleware called");
+    const token = req.header('Authorization');
 
-    if (!authorization) {
+    if (!token) {
         const error = new Error("No token");
         error.name = "UnauthorizedError";
         return next(error);
     }
 
-    const parts = authorization.split(" ");
-    const token = parts[1];
+    console.log(token);
 
     try {
         const decoded = jwt.verify(token, key);
