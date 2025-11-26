@@ -9,14 +9,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('token')
             },
-
         }
     );
     const result = await res.json();
     console.log(result);
     localStorage.setItem('id', result[0].id);
     
-
+    localStorage.setItem('token', "test");
     fetch("http://localhost:5000/user/" + localStorage.getItem('id') + "/todos",
         {
             method: "GET",
@@ -34,7 +33,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // 1. Créer un div pour la tâche
                 const taskDiv = document.createElement("div");
                 taskDiv.classList.add("task");
-
                 // 2. Ajouter le contenu
                 taskDiv.innerHTML = `
                 <div class="todo">
@@ -45,7 +43,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <button class="delete-btn" data-id="${task.id}">Supprimer</button>
                 </div>
             `;
-
                 // 3. Ajouter au conteneur
                 container.appendChild(taskDiv);
             });
