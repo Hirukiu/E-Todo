@@ -20,7 +20,7 @@
     return bcryptjs.compareSync(password, hashedPassword);
 }
 
- function generateToken(email, name, duration = '1h') {
+ function generateToken(email, name, duration = '42h') {
     const token = jwt.sign(
         { email, name },         // les infos a encoder
         key,                     // la clé pour encoder les trucs
