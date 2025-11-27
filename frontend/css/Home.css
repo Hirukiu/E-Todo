@@ -11,13 +11,15 @@ main{
 }
 h1{
     color: rgb(80, 80, 255);
-    border-bottom: 2px solid rgb(80, 80, 255);
+    border-bottom: 4px solid rgb(80, 80, 255);
     padding-bottom: 10px;
+    text-shadow: 3px 1px 0 rgba(0, 0, 0, 0.8);
 }
 .todo{
   background-color: #373c4fd3;
   width: 100%;
   height: 100%;
+  box-shadow: 8px 3px 4px rgba(0, 0, 0, 0.6);
 }
 
 .add-task-body{
@@ -79,6 +81,16 @@ h1{
     color: rgb(80, 80, 255);
     background-color: transparent;
 }
+.task-priority{
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    padding: 1px 5px;
+}
+.task-priority option{
+    background-color: #4d536c;
+}
 
 
 
@@ -105,17 +117,17 @@ h1{
     color: white;
     cursor: default;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.45), transparent);
-    border-radius: 2px;
+    border-radius: 5px;
 }
 .tasks .task:nth-child(even){
     background: transparent;
 }
 .tasks .task:hover{
     background: linear-gradient(90deg, rgba(80, 80, 255, 0.45), transparent);
-    .delete-btn{
+    .align .delete-btn{
         display: inline;
     }
-    .edit-btn{
+    .align .edit-btn{
         display: inline;
     }
     .task-time{
@@ -130,19 +142,26 @@ h1{
 .tasks .task .title .task-title{
     font-size: 1.7rem;
     font-weight: 400;
-    color: red;
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 .tasks .task .description{
     font-size: 1.2rem;
-    color: white;
-    margin-left: 10%;
-}
-.tasks .task .status{
-    background-color: white;
-    border: 1px solid #373c4f;
-    border-radius: 5px;
     color: #373c4f;
     margin-left: 10%;
+    
+}
+.tasks .task .status{
+    background-color: #373c4f8c;
+    border: 1px solid #373c4f;
+    border-radius: 5px;
+    color: white;
+    height: 100%;
+    padding: 1px 5px;
+    margin-right: 700px;
 }
 .tasks .task .task-time{
     font-size: 1rem;
@@ -150,10 +169,10 @@ h1{
     margin-left: 75%;
     pointer-events: none;
 }
-.edit-btn{
+.tasks .task .align .edit-btn{
     display: none;
     text-align: center;
-    height: auto;
+    height: 100%;
     font-size: 1rem;
     font-weight: 500;
     outline: none;
@@ -164,13 +183,11 @@ h1{
     cursor: pointer;
     padding: 5px 10px;
     border: 1px solid rgba(80, 80, 255, 0.45);
-    margin-left: 90%;
-    margin-bottom: 10px;
 }
-.delete-btn{
+.tasks .task .align .delete-btn{
     display: none;
     text-align: center;
-    height: auto;
+    height: 100%;
     font-size: 1rem;
     font-weight: 500;
     outline: none;
@@ -181,7 +198,13 @@ h1{
     cursor: pointer;
     padding: 5px 10px;
     border: 1px solid rgba(80, 80, 255, 0.45);
-    margin-left: 90%;
+}
+.tasks .task .align{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 
@@ -262,11 +285,9 @@ h1{
     display: none;
     position: fixed;
     z-index: 1;
-    left: 0;
-    top: 0;
     width: 100%;
-    height: 100%;
     background-color: rgba(128, 128, 128, 0.2);
+    
 }
 .folder-content{
     color: white;
