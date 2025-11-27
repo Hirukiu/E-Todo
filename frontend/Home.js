@@ -57,7 +57,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                         </div>
                         <p class="description">${task.description}</p>
                         <p class="task-time">${task.due_time}</p>
-                        <p class="status">${task.status}</p>
                         <button class="edit-btn" data-id="${task.id}">Edit</button>
                         <button class="delete-btn" data-id="${task.id}">Delete</button>
                     </div>
@@ -344,12 +343,12 @@ async function UpdateUser(id, email, password, firstname, name) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify
-            ({
-                "email": email,
-                "password": password,
-                "firstname": firstname,
-                "name": name
-            })
+                ({
+                    "email": email,
+                    "password": password,
+                    "firstname": firstname,
+                    "name": name
+                })
         }
     );
     return res.json();
@@ -365,15 +364,213 @@ async function UpdateUser(email, password, firstname, name) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify
-            ({
-                "email": email,
-                "password": password,
-                "firstname": firstname,
-                "name": name
-            })
+                ({
+                    "email": email,
+                    "password": password,
+                    "firstname": firstname,
+                    "name": name
+                })
         }
     );
     return res.json();
 }
 
-//-----------------------------------
+//---------------------------------------- fonction pour put todo ---------------------------------------------------------//
+//  
+//  met a jour un todo       
+//    
+//  Update le todo par les valeur en parametres:                                                                                                              
+//  UpdateTodo(id, title, description, due_time, user_id, status)
+//  
+//  modifier seulement le status :
+//  UpdateTodo(id, status)
+//
+//  modifer le update par la value 
+//  UpdateTodo(id, Update, Value)
+// 
+//  ex:
+//  Update(1, "desciption", "faire une fonction put todo");
+//  Update(5, "user_id", 3);
+//
+//
+//  return the Updated Todo
+//
+//-------------------------------------------------------------------------------------------------------------------------//
+
+async function UpdateTodo(id, title, description, due_time, user_id, status) {
+    const res = await fetch(`http://localhost:5000/todos/${id}`,
+        {
+            method: "PUT",
+            headers:
+            {
+                "Authorization": localStorage.getItem('token'),
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify
+                ({
+                    "title": title,
+                    "description": description,
+                    "due_time": due_time,
+                    "user_id ": user_id,
+                    "status": status
+                })
+        }
+    );
+    return res.json();
+}
+
+async function UpdateTodo(id, status) {
+
+    const resp = await fetch(`http://localhost:5000/todos/${id}`,
+        {
+            method: "GET",
+            headers:
+            {
+                "Authorization": localStorage.getItem('token'),
+                "Content-Type": "application/json"
+            },
+        }
+    );
+    const result = resp.json();
+
+    const res = await fetch(`http://localhost:5000/todos/${id}`,
+        {
+            method: "PUT",
+            headers:
+            {
+                "Authorization": localStorage.getItem('token'),
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify
+                ({
+                    "title": result.title,
+                    "description": result.description,
+                    "due_time": result.due_time,
+                    "user_id ": result.user_id,
+                    "status": status
+                })
+        }
+    );
+    return res.json();
+}
+
+async function UpdateTodo(id, Update, value) {
+
+    const resp = await fetch(`http://localhost:5000/todos/${id}`,
+        {
+            method: "GET",
+            headers:
+            {
+                "Authorization": localStorage.getItem('token'),
+                "Content-Type": "application/json"
+            },
+        }
+    );
+    const result = resp.json();
+    let res
+    switch (Update) {
+        case "title":
+            res = await fetch(`http://localhost:5000/todos/${id}`,
+                {
+                    method: "PUT",
+                    headers:
+                    {
+                        "Authorization": localStorage.getItem('token'),
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify
+                        ({
+                            "title": value,
+                            "description": result.description,
+                            "due_time": result.due_time,
+                            "user_id ": result.user_id,
+                            "status": result.status
+                        })
+                }
+            );
+            return res.json();
+        case "description":
+            res = await fetch(`http://localhost:5000/todos/${id}`,
+                {
+                    method: "PUT",
+                    headers:
+                    {
+                        "Authorization": localStorage.getItem('token'),
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify
+                        ({
+                            "title": result.title,
+                            "description": value,
+                            "due_time": result.due_time,
+                            "user_id ": result.user_id,
+                            "status": result.status
+                        })
+                }
+            );
+            return res.json();
+        case "due_time":
+            res = await fetch(`http://localhost:5000/todos/${id}`,
+                {
+                    method: "PUT",
+                    headers:
+                    {
+                        "Authorization": localStorage.getItem('token'),
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify
+                        ({
+                            "title": result.title,
+                            "description": result.description,
+                            "due_time": value,
+                            "user_id ": result.user_id,
+                            "status": result.status
+                        })
+                }
+            );
+            return res.json();
+        case "user_id ":
+            res = await fetch(`http://localhost:5000/todos/${id}`,
+                {
+                    method: "PUT",
+                    headers:
+                    {
+                        "Authorization": localStorage.getItem('token'),
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify
+                        ({
+                            "title": result.title,
+                            "description": result.description,
+                            "due_time": result.due_time,
+                            "user_id ": value,
+                            "status": result.status
+                        })
+                }
+            );
+            return res.json();
+        case "status":
+            res = await fetch(`http://localhost:5000/todos/${id}`,
+                {
+                    method: "PUT",
+                    headers:
+                    {
+                        "Authorization": localStorage.getItem('token'),
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify
+                        ({
+                            "title": result.title,
+                            "description": result.description,
+                            "due_time": result.due_time,
+                            "user_id ": result.user_id,
+                            "status": status
+                        })
+                }
+            );
+            return res.json();
+        default:
+            console.log("truc a update pas bon")
+    }
+
+}
