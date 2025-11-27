@@ -50,12 +50,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     // 2. Ajouter le contenu
                     taskDiv.innerHTML = `
-                <div class="todo">
-                <h3>${task.title}</h3>
-                <p>${task.description}</p>
-                <p>${task.due_time}</p>
-                <p>${task.status}</p>
-                <button class="delete-btn" data-id="${task.id}">Supprimer</button>
+                <div class="tasks">
+                    <div class="task">
+                        <div class="title">
+                        <h3 class="task-title">${task.title}</h3>
+                        </div>
+                        <p class="description">${task.description}</p>
+                        <p class="task-time">${task.due_time}</p>
+                        <p>${task.status}</p>
+                        <button class="edit-btn" data-id="${task.id}">Edit</button>
+                        <button class="delete-btn" data-id="${task.id}">Delete</button>
+                    </div>
                 </div>`;
 
                     // 3. Ajouter au conteneur

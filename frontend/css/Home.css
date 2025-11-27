@@ -94,11 +94,11 @@ h1{
     width: 95%;
     min-height: 70px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
     justify-content: center;
-    gap: 5px;
     padding: 0 20px;
-    padding-left: 50px;
+    padding-left: 10px;
     color: white;
     cursor: pointer;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.45), transparent);
@@ -109,6 +109,14 @@ h1{
 }
 .tasks .task:hover{
     background: linear-gradient(90deg, rgba(80, 80, 255, 0.45), transparent);
+    .delete-btn{
+    background-color: rgba(80, 80, 255, 0.45);
+    border: 1px solid rgb(80, 80, 255);
+    }
+    .edit-btn{
+    background-color: rgba(80, 80, 255, 0.45);
+    border: 1px solid rgb(80, 80, 255);
+    }   
 }
 .tasks .task .title{
     display: flex;
@@ -118,14 +126,6 @@ h1{
 .tasks .task .title .task-title{
     font-size: 1rem;
     font-weight: 400;
-    margin-left: 20px;
-}
-.tasks .task .title i{
-    color: rgb(80, 80, 255);
-    font-size: 0.5rem;
-}
-.tasks .task:hover .title i{
-    color: white;
 }
 .tasks .task .task-time{
     font-size: 0.8rem;
@@ -134,6 +134,38 @@ h1{
     margin-left: 15px;
     pointer-events: none;
 }
+.edit-btn{
+    text-align: center;
+    height: auto;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.45);
+    border-radius: 5px;
+    cursor: default;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    margin-left: 90%;
+    margin-bottom: 10px;
+}
+.delete-btn{
+    text-align: center;
+    height: auto;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.45);
+    border-radius: 5px;
+    cursor: default;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    margin-left: 90%;
+}
+
 
 
 
