@@ -109,6 +109,30 @@ window.onclick = function (event) {
 }
 
 
+
+const eventsArr = [
+    {
+        day: 26,
+        month: 11,
+        year: 2025,
+        events: [
+            {
+                title: "Task 1 lorem ipsum e-todo",
+                time: "09:45 AM",
+            },
+            {
+                title: "Task 2",
+                time: "10:30 AM",
+            },
+        ],
+    },
+];
+
+
+
+
+
+
 const addEventTitle = document.querySelector(".task-name"),
     addEventFrom = document.querySelector(".task-time-from"),
     addEventTo = document.querySelector(".task-time-to");
