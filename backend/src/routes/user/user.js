@@ -105,6 +105,7 @@ users.get('/users/:email', async (req, res, next) => {
 
 const { UpdateUser } = require('./user.query');
 users.put('/users/:id', async (req, res, next) => {
+
     try {
         const db = req.app.locals.db;
         if (!await IdExists(req.params.id, db)) {
@@ -119,8 +120,9 @@ users.put('/users/:id', async (req, res, next) => {
             error.name = 'BadParametersError';
             throw error;
         }
-
-        const result = await UpdateUser(db, req.params.id, email, name, firstname, password);
+        const salt = bcryptjs.genSaltSync(10);
+        const hashed =  bcryptjs.hashSync(password, salt);
+        const result = await UpdateUser(db, req.params.id, email, name, firstname, hashed);
         res.status(200).json(result);
     } catch (err) {
         next(err);

@@ -79,8 +79,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 "Content-Type": "application/json"
                             }
                         });
-                            const result = await res.json();
-                            console.log(result);
+                        const result = await res.json();
+                        console.log(result);
                         //si j'ai une reponse serv je delete
                         if (res.ok) {
                             window.location.href = "http://localhost:8080/Home.html"
@@ -89,11 +89,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                             console.error("Erreur lors de la suppression");
                         }
                     })
-                    
+
                 })
             });
 
-    }});
+    }
+});
 
 
 
@@ -236,7 +237,7 @@ const eventsArr = [
 //         time: timeFrom + " - " + timeTo,
 //     };
 //     let eventAdded = false;
-    
+
 // });
 
 // function convertTime(time) {
@@ -276,7 +277,103 @@ document.getElementById("add-task-btn").addEventListener("click", async () => {
                 status: status
             })
     })
-    .then(() => {
+        .then(() => {
             window.location.href = "http://localhost:8080/Home.html";
         })
 });
+De
+//------------------------------------------------------ fonction pour la route delete ----------------------------------------------------//
+//
+// pour l'utiliser appeler DeleteUser sans paramétre supprimera l'utilisateur actuel et avec un parametre supprimera l'utilisateur a l'id  //
+//
+// DeleteUser(int id);
+// DeleteUser(); 
+// Return {"msg": "Successfully deleted record number: ${id}"} si c'est bon ou un message d'erreur classique
+
+async function DeleteUser() {
+    const res = await fetch(`http://localhost:5000/users/${localStorage.getItem("id")}`,
+        {
+            method: "DELETE",
+            headers:
+            {
+                "Authorization": localStorage.getItem('token'),
+                "Content-Type": "application/json"
+            },
+        });
+    return res;
+}
+
+async function DeleteUser(id) {
+    const res = await fetch(`http://localhost:5000/users/${id}`,
+        {
+            method: "DELETE",
+            headers:
+            {
+                "Authorization": localStorage.getItem('token'),
+                "Content-Type": "application/json"
+            },
+        });
+    return res.json();
+}
+
+//---------------------------------------- fonction pour update user ---------------------------------------------------------//
+//  
+//  met a jour un user peut s'appeler avec ou sans id        
+//                                                                                                                  
+//  UpdateUser(id, email, password, firstname, name)
+//  UpdateUser(email, password, firstname, name)
+//
+//
+//  return {
+//      "id": 1,
+//      "email": email ,
+//      "password":  hashed password  ,
+//      "create _at": "XXXX-XX-XX XX:XX:XX" ,
+//      "firstname": firstname ,
+//      "name": name
+//  }
+//----------------------------------------------------------------------------------------------------------------------------//
+
+async function UpdateUser(id, email, password, firstname, name) {
+    const res = await fetch(`http://localhost:5000/users/${id}`,
+        {
+            method: "PUT",
+            headers:
+            {
+                "Authorization": localStorage.getItem('token'),
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify
+            ({
+                "email": email,
+                "password": password,
+                "firstname": firstname,
+                "name": name
+            })
+        }
+    );
+    return res.json();
+}
+
+async function UpdateUser(email, password, firstname, name) {
+    const res = await fetch(`http://localhost:5000/users/${localStorage.getItem("id")}`,
+        {
+            method: "PUT",
+            headers:
+            {
+                "Authorization": localStorage.getItem('token'),
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify
+            ({
+                "email": email,
+                "password": password,
+                "firstname": firstname,
+                "name": name
+            })
+        }
+    );
+    return res.json();
+}
+
+//-----------------------------------
