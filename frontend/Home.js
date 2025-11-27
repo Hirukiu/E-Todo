@@ -83,13 +83,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                             console.log(result);
                         //si j'ai une reponse serv je delete
                         if (res.ok) {
-                            this.closest(".task").remove();
-                           
+                            window.location.href = "http://localhost:8080/Home.html"
                         }
                         else {
                             console.error("Erreur lors de la suppression");
                         }
                     })
+                    
                 })
             });
 
@@ -276,4 +276,7 @@ document.getElementById("add-task-btn").addEventListener("click", async () => {
                 status: status
             })
     })
+    .then(() => {
+            window.location.href = "http://localhost:8080/Home.html";
+        })
 });
