@@ -84,17 +84,24 @@ todos.put('/todos/:id', async (req, res, next) => {
 
 const { DeleteTodo } = require('./todos.query');
 todos.delete('/todos/:id', async (req, res, next) => {
+    console.log("Delete todo endpoint reached");
     try {
+        
         const db = req.app.locals.db;
         const todoId = req.params.id;
 
-        if (!await todoExists(todoId, db)) {
+        if (!await todoExists(db, todoId)) {
             const error = new Error('Todo not found');
             error.name = 'NotFoundError';
             throw error;
         }
 
-        await DeleteTodo(db, todoId);
+        const result = await DeleteTodo(db, todoId);
+        if (result.affectedRows === 0) {
+            const error = new Error('Todo not found');
+            error.name = 'NotFoundError';
+            throw error;
+        }
         res.status(200).json({ "msg": `Successfully deleted record number: ${todoId}` });
     } catch (err) {
         next(err);
