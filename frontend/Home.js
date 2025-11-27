@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         </div>
                         <p class="description">${task.description}</p>
                         <p class="task-time">${task.due_time}</p>
-                        <p>${task.status}</p>
+                        <p class="status">${task.status}</p>
                         <button class="edit-btn" data-id="${task.id}">Edit</button>
                         <button class="delete-btn" data-id="${task.id}">Delete</button>
                     </div>
