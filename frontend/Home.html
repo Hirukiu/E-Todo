@@ -81,19 +81,16 @@
                 
                 <div class="add-task-body">
                     <div class="add-task-input">
-                        <input type="text" placeholder="Task Name" class="task-name">
+                        <input type="text" placeholder="Task Name" class="task-name" id="task-name">
                     </div>
                     <div class="add-task-input">
-                        <input type="text" placeholder="description" class="task-description">
+                        <input type="text" placeholder="description" class="task-description" id="task-description">
                     </div>
                     <div class="add-task-input">
-                        <input type="text" placeholder="status" class="task-status">
+                        <input type="datetime-local" placeholder="Task Time To" class="task-time-to" id="task-time-to">
                     </div>
                     <div class="add-task-input">
-                        <input type="datetime-local" placeholder="Task Time To" class="task-time-to">
-                    </div>
-                    <div class="add-task-input">
-                        <select class="task-priority">
+                        <select class="task-priority" id="task-priority">
                             <option value="not-started">Not Started</option>
                             <option value="todo">todo</option>
                             <option value="in progress">in progress</option>
@@ -102,7 +99,7 @@
                     </div>
                 </div>
                 <div class="add-task-footer">
-                    <button class="add-task-btn">add task</button>
+                    <button class="add-task-btn" id="add-task-btn">add task</button>
                 </div>
                 
         </div>

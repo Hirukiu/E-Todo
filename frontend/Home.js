@@ -248,3 +248,32 @@ const eventsArr = [
 //   time = timeHour + ":" + timeMin + " " + timeFormat;
 //   return time;
 // }
+
+
+document.getElementById("add-task-btn").addEventListener("click", async () => {
+    console.log("hello world")
+    const title = document.getElementById("task-name").value
+    const description = document.getElementById("task-description").value
+    const due_time = document.getElementById("task-time-to").value
+    const status = document.getElementById("task-priority").value
+
+    const user_id = localStorage.getItem("id");
+
+    const res = await fetch("http://localhost:5000/todos", {
+        method: "POST",
+        headers:
+        {
+            "Authorization": localStorage.getItem('token'),
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify
+            ({
+                title: title,
+                description: description,
+                due_time: due_time,
+                user_id: localStorage.getItem("id"),
+                status: status
+            })
+    })
+});
