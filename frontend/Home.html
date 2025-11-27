@@ -44,8 +44,8 @@
                 </button>
                 <ul class="sub-menu">
                     <div>
-                    <li><button class="folder-btn" id="Folder"><span>Task</span></button></li>
-                    <li><a href="#">Project</a></li>
+                        <li><button class="folder-btn" id="Folder"><span>Task</span></button></li>
+                        <li><a href="#">Project</a></li>
                     </div>
                 </ul>
             </li>
@@ -65,43 +65,68 @@
         <h1>To do :</h1>
         <div class="todo">
             <div id="task-container">
-                    
+
             </div>
         </div>
-        
+
     </main>
 
 
 
     <div id="Folder-mod" class="modal">
         <div class="folder-content animate">
-        <span class="cls">&times;</span>
-        <h2>Add Task</h2>
-            
-                
-                <div class="add-task-body">
-                    <div class="add-task-input">
-                        <input type="text" placeholder="Task Name" class="task-name" id="task-name">
-                    </div>
-                    <div class="add-task-input">
-                        <input type="text" placeholder="description" class="task-description" id="task-description">
-                    </div>
-                    <div class="add-task-input">
-                        <input type="datetime-local" placeholder="Task Time To" class="task-time-to" id="task-time-to">
-                    </div>
-                    <div class="add-task-input">
-                        <select class="task-priority" id="task-priority">
-                            <option value="not started">Not Started</option>
-                            <option value="todo">todo</option>
-                            <option value="in progress">in progress</option>
-                            <option value="done">done</option>
-                        </select>
-                    </div>
+            <span class="cls">&times;</span>
+            <h2>Add Task</h2>
+
+
+            <div class="add-task-body">
+                <div class="add-task-input">
+                    <input type="text" placeholder="Task Name" class="task-name" id="task-name">
                 </div>
-                <div class="add-task-footer">
-                    <button class="add-task-btn" id="add-task-btn">add task</button>
+                <div class="add-task-input">
+                    <input type="text" placeholder="description" class="task-description" id="task-description">
                 </div>
-                
+                <div class="add-task-input">
+                    <input type="datetime-local" placeholder="Task Time To" class="task-time-to" id="task-time-to">
+                </div>
+                <div class="add-task-input">
+                    <select class="task-priority" id="task-priority">
+                        <option value="not started">Not Started</option>
+                        <option value="todo">todo</option>
+                        <option value="in progress">in progress</option>
+                        <option value="done">done</option>
+                    </select>
+                </div>
+            </div>
+            <div class="add-task-footer">
+                <button class="add-task-btn" id="add-task-btn">add task</button>
+            </div>
+
+        </div>
+    </div>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span id="closeEditModal" class="close">&times;</span>
+
+            <h2>Modifier la tâche</h2>
+
+            <label>Titre :</label>
+            <input type="text" id="editTitle">
+
+            <label>Description :</label>
+            <input type="text" id="editDescription">
+
+            <label>Due time :</label>
+            <input type="datetime-local" placeholder="Task Time To" class="task-time-to_edit" id="task-time-to_edit">
+
+            <label>Status :</label>
+            <select id="editStatus">
+                <option value="todo">À faire</option>
+                <option value="in_progress">En cours</option>
+                <option value="done">Terminée</option>
+            </select>
+
+            <button id="saveEditBtn">Enregistrer</button>
         </div>
     </div>
 

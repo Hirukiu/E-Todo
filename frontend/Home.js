@@ -170,6 +170,34 @@ const eventsArr = [
 
 
 
+document.getElementById("closeEditModal").onclick = () => {
+    document.getElementById("editModal").style.display = "none";
+};
+
+
+document.getElementById("saveEditBtn").addEventListener("click", function () {
+    document.addEventListener("click", function (e) {
+
+
+        if (e.target.classList.contains("edit-btn")) {
+            const taskId = e.target.dataset.id;
+            const title = document.getElementById("editTitle").value;
+            const desciption = document.getElementById("editDescription").value;
+            const due_time = document.getElementById("task-time-to_edit").value;
+            const status = document.getElementById("editStatus").value;
+            const user_id = localStorage.getItem("id");
+            document.getElementById("saveEditBtn").dataset.id = taskId;
+            UpdateTodo(taskId, title, desciption, due_time, user_id, status);
+
+
+
+
+            document.getElementById("editModal").style.display = "block";
+
+
+        }
+    });
+});
 
 
 
@@ -280,7 +308,7 @@ document.getElementById("add-task-btn").addEventListener("click", async () => {
             window.location.href = "http://localhost:8080/Home.html";
         })
 });
-De
+
 //------------------------------------------------------ fonction pour la route delete ----------------------------------------------------//
 //
 // pour l'utiliser appeler DeleteUser sans paramétre supprimera l'utilisateur actuel et avec un parametre supprimera l'utilisateur a l'id  //
@@ -419,158 +447,162 @@ async function UpdateTodo(id, title, description, due_time, user_id, status) {
     return res.json();
 }
 
-async function UpdateTodo(id, status) {
+// async function UpdateTodo(id, status) {
+//
+//     const resp = await fetch(`http://localhost:5000/todos/${id}`,
+//         {
+//             method: "GET",
+//             headers:
+//             {
+//                 "Authorization": localStorage.getItem('token'),
+//                 "Content-Type": "application/json"
+//             },
+//         }
+//     );
+//     const result = resp.json();
 
-    const resp = await fetch(`http://localhost:5000/todos/${id}`,
-        {
-            method: "GET",
-            headers:
-            {
-                "Authorization": localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-        }
-    );
-    const result = resp.json();
+//     const res = await fetch(`http://localhost:5000/todos/${id}`,
+//         {
+//             method: "PUT",
+//             headers:
+//             {
+//                 "Authorization": localStorage.getItem('token'),
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify
+//                 ({
+//                     "title": result.title,
+//                     "description": result.description,
+//                     "due_time": result.due_time,
+//                     "user_id ": result.user_id,
+//                     "status": status
+//                 })
+//         }
+//     );
+//     return res.json();
+// }
 
-    const res = await fetch(`http://localhost:5000/todos/${id}`,
-        {
-            method: "PUT",
-            headers:
-            {
-                "Authorization": localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify
-                ({
-                    "title": result.title,
-                    "description": result.description,
-                    "due_time": result.due_time,
-                    "user_id ": result.user_id,
-                    "status": status
-                })
-        }
-    );
-    return res.json();
-}
+// async function UpdateTodo(id, Update, value) {
 
-async function UpdateTodo(id, Update, value) {
+//     const resp = await fetch(`http://localhost:5000/todos/${id}`,
+//         {
+//             method: "GET",
+//             headers:
+//             {
+//                 "Authorization": localStorage.getItem('token'),
+//                 "Content-Type": "application/json"
+//             },
+//         }
+//     );
+//     const result = resp.json();
+//     let res
+//     switch (Update) {
+//         case "title":
+//             res = await fetch(`http://localhost:5000/todos/${id}`,
+//                 {
+//                     method: "PUT",
+//                     headers:
+//                     {
+//                         "Authorization": localStorage.getItem('token'),
+//                         "Content-Type": "application/json"
+//                     },
+//                     body: JSON.stringify
+//                         ({
+//                             "title": value,
+//                             "description": result.description,
+//                             "due_time": result.due_time,
+//                             "user_id ": result.user_id,
+//                             "status": result.status
+//                         })
+//                 }
+//             );
+//             return res.json();
+//         case "description":
+//             res = await fetch(`http://localhost:5000/todos/${id}`,
+//                 {
+//                     method: "PUT",
+//                     headers:
+//                     {
+//                         "Authorization": localStorage.getItem('token'),
+//                         "Content-Type": "application/json"
+//                     },
+//                     body: JSON.stringify
+//                         ({
+//                             "title": result.title,
+//                             "description": value,
+//                             "due_time": result.due_time,
+//                             "user_id ": result.user_id,
+//                             "status": result.status
+//                         })
+//                 }
+//             );
+//             return res.json();
+//         case "due_time":
+//             res = await fetch(`http://localhost:5000/todos/${id}`,
+//                 {
+//                     method: "PUT",
+//                     headers:
+//                     {
+//                         "Authorization": localStorage.getItem('token'),
+//                         "Content-Type": "application/json"
+//                     },
+//                     body: JSON.stringify
+//                         ({
+//                             "title": result.title,
+//                             "description": result.description,
+//                             "due_time": value,
+//                             "user_id ": result.user_id,
+//                             "status": result.status
+//                         })
+//                 }
+//             );
+//             return res.json();
+//         case "user_id ":
+//             res = await fetch(`http://localhost:5000/todos/${id}`,
+//                 {
+//                     method: "PUT",
+//                     headers:
+//                     {
+//                         "Authorization": localStorage.getItem('token'),
+//                         "Content-Type": "application/json"
+//                     },
+//                     body: JSON.stringify
+//                         ({
+//                             "title": result.title,
+//                             "description": result.description,
+//                             "due_time": result.due_time,
+//                             "user_id ": value,
+//                             "status": result.status
+//                         })
+//                 }
+//             );
+//             return res.json();
+//         case "status":
+//             res = await fetch(`http://localhost:5000/todos/${id}`,
+//                 {
+//                     method: "PUT",
+//                     headers:
+//                     {
+//                         "Authorization": localStorage.getItem('token'),
+//                         "Content-Type": "application/json"
+//                     },
+//                     body: JSON.stringify
+//                         ({
+//                             "title": result.title,
+//                             "description": result.description,
+//                             "due_time": result.due_time,
+//                             "user_id ": result.user_id,
+//                             "status": status
+//                         })
+//                 }
+//             );
+//             return res.json();
+//         default:
+//             console.log("truc a update pas bon")
+//     }
 
-    const resp = await fetch(`http://localhost:5000/todos/${id}`,
-        {
-            method: "GET",
-            headers:
-            {
-                "Authorization": localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-        }
-    );
-    const result = resp.json();
-    let res
-    switch (Update) {
-        case "title":
-            res = await fetch(`http://localhost:5000/todos/${id}`,
-                {
-                    method: "PUT",
-                    headers:
-                    {
-                        "Authorization": localStorage.getItem('token'),
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify
-                        ({
-                            "title": value,
-                            "description": result.description,
-                            "due_time": result.due_time,
-                            "user_id ": result.user_id,
-                            "status": result.status
-                        })
-                }
-            );
-            return res.json();
-        case "description":
-            res = await fetch(`http://localhost:5000/todos/${id}`,
-                {
-                    method: "PUT",
-                    headers:
-                    {
-                        "Authorization": localStorage.getItem('token'),
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify
-                        ({
-                            "title": result.title,
-                            "description": value,
-                            "due_time": result.due_time,
-                            "user_id ": result.user_id,
-                            "status": result.status
-                        })
-                }
-            );
-            return res.json();
-        case "due_time":
-            res = await fetch(`http://localhost:5000/todos/${id}`,
-                {
-                    method: "PUT",
-                    headers:
-                    {
-                        "Authorization": localStorage.getItem('token'),
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify
-                        ({
-                            "title": result.title,
-                            "description": result.description,
-                            "due_time": value,
-                            "user_id ": result.user_id,
-                            "status": result.status
-                        })
-                }
-            );
-            return res.json();
-        case "user_id ":
-            res = await fetch(`http://localhost:5000/todos/${id}`,
-                {
-                    method: "PUT",
-                    headers:
-                    {
-                        "Authorization": localStorage.getItem('token'),
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify
-                        ({
-                            "title": result.title,
-                            "description": result.description,
-                            "due_time": result.due_time,
-                            "user_id ": value,
-                            "status": result.status
-                        })
-                }
-            );
-            return res.json();
-        case "status":
-            res = await fetch(`http://localhost:5000/todos/${id}`,
-                {
-                    method: "PUT",
-                    headers:
-                    {
-                        "Authorization": localStorage.getItem('token'),
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify
-                        ({
-                            "title": result.title,
-                            "description": result.description,
-                            "due_time": result.due_time,
-                            "user_id ": result.user_id,
-                            "status": status
-                        })
-                }
-            );
-            return res.json();
-        default:
-            console.log("truc a update pas bon")
-    }
+// }
 
-}
+
+
+
