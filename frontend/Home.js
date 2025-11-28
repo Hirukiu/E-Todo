@@ -47,8 +47,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     // 1. Créer une div pour la tâche
                     const taskDiv = document.createElement("div");
                     taskDiv.classList.add("task");
-                    console.log(typeof task.due_time);
-                    console.log(task.due_time);
                     const dateObject = new Date(task.due_time);
                     // 2. Ajouter le contenu
                     taskDiv.innerHTML = `
@@ -199,16 +197,16 @@ document.getElementById("closeEditModal").onclick = () => {
 };
 
 document.getElementById("saveEditBtn").addEventListener("click", function (e) {
-    const taskId = document.getElementById("saveEditBtn").dataset.id;
 
-    const title = document.getElementById("editTitle").value;
-    const description = document.getElementById("editDescription").value;
-    const due_time = document.getElementById("task-time-to_edit").value;
-    const status = document.getElementById("editStatus").value;
-    const user_id = localStorage.getItem("id");
-
-    UpdateTodo(taskId, title, description, due_time, user_id, status);
-    
+    UpdateTodo(
+        document.getElementById("saveEditBtn").dataset.id,
+        document.getElementById("editTitle").value,
+        document.getElementById("editDescription").value,
+        document.getElementById("task-time-to_edit").value,
+        localStorage.getItem("id"),
+        document.getElementById("editStatus").value
+    );
+    window.location.href = "http://localhost:8080/Home.html";
     document.getElementById("editModal").style.display = "none";
 });
 
@@ -377,7 +375,7 @@ async function UpdateTodo(id, title, description, due_time, user_id, status) {
                         "title": title,
                         "description": description,
                         "due_time": due_time,
-                        "user_id ": user_id,
+                        "user_id": user_id,
                         "status": status
                     })
             }

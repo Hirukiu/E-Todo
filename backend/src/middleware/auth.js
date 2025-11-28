@@ -14,8 +14,6 @@ function auth(req, res, next) {
         return next(error);
     }
 
-    console.log(token);
-
     try {
         const decoded = jwt.verify(token, key);
         req.user = decoded;
