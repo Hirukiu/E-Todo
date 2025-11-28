@@ -1,4 +1,5 @@
-body {font-family: Arial, Helvetica, sans-serif;}
+body {font-family: Arial, Helvetica, sans-serif;
+justify-items: center;}
 
 .background{
   background-image: url('../assets/business-office-wallpaper.jpg');
@@ -15,6 +16,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   max-width: 25%;
   padding: 20px;
   border-radius: 20px;
+  margin: auto;
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
 }
 p{

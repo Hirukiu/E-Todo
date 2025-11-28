@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/index.css">
-<title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/index.css">
+  <title>Login</title>
 </head>
+
 <body class="background">
-<div class="Login">
-<h2>Modal Login Form</h2>
+  <div class="Login">
+    <h2>Modal Login Form</h2>
 
-<button class="btnforlogin">Login</button>
-<p>or</p>
-<button class="register"><a href="register.html">Register</a></button>
-</div>
-<div id="userFormLogin" class="modal">
-  
-  <form class="modal-content animate" action="/" method="post">
-    <div class="imgcontainer">
-      <span class="close" title="Close Modal">&times;</span>
-    </div>
-    
-    <div class="container">
-      <label for="psw"><b>Email</b></label>
-      <input type="email" placeholder="Enter Email" name="email" id="email" required>
+    <button class="btnforlogin">Login</button>
+    <p>or</p>
+    <button class="register"><a href="register.html">Register</a></button>
+  </div>
+  <div id="userFormLogin" class="modal">
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="pwd" id="pwd" required>
-        
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
+    <form class="modal-content animate" action="/" method="post">
+      <div class="imgcontainer">
+        <span class="close" title="Close Modal">&times;</span>
+      </div>
 
-    <div class="psw">
-    <span>Forgot </span><a href="">password</a>
-    </div>
-  </form>
-</div>
-<div id="messageDiv"></div>
+      <div class="container">
+        <label for="psw"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="email" id="email" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="pwd" id="pwd" required>
+
+        <button type="submit">Login</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+      </div>
+
+      <div class="psw">
+        <span>Forgot </span><a href="">password</a>
+      </div>
+    </form>
+  </div>
+  <div id="messageDiv"></div>
 
 
-<script src="index.js" defer></script>
+  <script src="index.js" defer></script>
 
 </body>
+
 </html>
