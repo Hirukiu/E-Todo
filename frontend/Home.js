@@ -155,36 +155,6 @@ window.onclick = function (event) {
 
 
 
-// document.getElementsByClassName(".edit-btn").addEventListener("click", function () {
-//     document.getElementById("editModal").style.display = "block";
-//     console.log("blah")
-// })
-
-// document.getElementById("closeEditModal").onclick = () => {
-//     document.getElementById("editModal").style.display = "none";
-// };
-
-
-// document.getElementById("saveEditBtn").addEventListener("click", function () {
-    
-
-//         if (e.target.classList.contains("edit-btn")) {
-
-//             const taskId = e.target.dataset.id;
-//             const title = document.getElementById("editTitle").value;
-//             const desciption = document.getElementById("editDescription").value;
-//             const due_time = document.getElementById("task-time-to_edit").value;
-//             const status = document.getElementById("editStatus").value;
-//             const user_id = localStorage.getItem("id");
-
-//             document.getElementById("saveEditBtn").dataset.id = taskId;
-
-//             UpdateTodo(taskId, title, desciption, due_time, user_id, status);
-
-            
-//         }
-//     });
-
 document.addEventListener('click', function (e) {
     if (e.target.classList.contains('edit-btn')) {
     

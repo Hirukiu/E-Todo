@@ -59,6 +59,9 @@
                     </svg>
                     <span>Calendar</span></a>
             </li>
+            <li>
+                <a href="user.html"><span>User</span></a>
+            </li>
         </ul>
     </nav>
 
@@ -82,13 +85,13 @@
 
             <div class="add-task-body">
                 <div class="add-task-input">
-                    <input type="text" placeholder="Task Name" class="task-name" id="task-name">
+                    <input type="text" placeholder="Task Name" id="task-name">
                 </div>
                 <div class="add-task-input">
-                    <input type="text" placeholder="description" class="task-description" id="task-description">
+                    <input type="text" placeholder="Description" id="task-description">
                 </div>
                 <div class="add-task-input">
-                    <input type="datetime-local" placeholder="Task Time To" class="task-time-to" id="task-time-to">
+                    <input type="datetime-local" placeholder="Task Time To" id="task-time-to">
                 </div>
                 <div class="add-task-input">
                     <select class="task-priority" id="task-priority">
@@ -105,29 +108,36 @@
 
         </div>
     </div>
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span id="closeEditModal" class="close">&times;</span>
 
-            <h2>Modifier la tâche</h2>
+    <div id="editModal" class="modal-ed">
+        <div class="edit-content animate">
+            <span id="closeEditModal" class="cls-ed">&times;</span>
 
-            <label>Titre :</label>
-            <input type="text" id="editTitle">
+            <h2>Edit task</h2>
 
-            <label>Description :</label>
-            <input type="text" id="editDescription">
 
-            <label>Due time :</label>
-            <input type="datetime-local" placeholder="Task Time To" class="task-time-to_edit" id="task-time-to_edit">
-
-            <label>Status :</label>
-            <select id="editStatus">
-                <option value="todo">À faire</option>
-                <option value="in_progress">En cours</option>
-                <option value="done">Terminée</option>
-            </select>
-
-            <button id="saveEditBtn">Enregistrer</button>
+            <div class="edit-task-body">
+                <div class="edit-task-input">
+                    <input type="text" placeholder="Task Name" id="editTitle">
+                </div>
+                <div class="edit-task-input">
+                    <input type="text" placeholder="Description" id="editDescription">
+                </div>
+                <div class="edit-task-input">
+                    <input type="datetime-local" placeholder="Task Time To" class="task-time-to_edit" id="task-time-to_edit">
+                </div>
+                <div class="edit-task-input">
+                    <select class="ed-task-priority" id="editStatus">
+                        <option value="not started">Not Started</option>
+                        <option value="todo">todo</option>
+                        <option value="in progress">in progress</option>
+                        <option value="done">done</option>
+                    </select>
+                </div>
+            </div>
+            <div class="edit-task-footer">
+            <button class="edit-task-btn" id="saveEditBtn">Save</button>
+            </div>
         </div>
     </div>
 
