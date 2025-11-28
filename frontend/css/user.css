@@ -28,7 +28,7 @@ body{
     width: 100%;
     height: 100%;
     position: relative;
-    transition: transform 1500ms;
+    transition: transform 500ms;
     transform-style: preserve-3d;
 }
 
@@ -69,7 +69,7 @@ ul{
     width: 100%;
     height: 100%;
     position: relative;
-    transition: transform 1500ms;
+    transition: transform 500ms;
     transform-style: preserve-3d;
 }
 
@@ -107,7 +107,7 @@ ul{
     width: 100%;
     height: 100%;
     position: relative;
-    transition: transform 1500ms;
+    transition: transform 500ms;
     transform-style: preserve-3d;
 }
 

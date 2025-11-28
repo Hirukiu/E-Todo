@@ -41,8 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
              messageDiv.style.color = 'red'; 
             }
         else {
-             messageDiv.textContent = "Compte crée";
-             messageDiv.style.color = 'green'; 
+             window.location.href = "http://localhost:8080/index.html";
             }
     });
 });
