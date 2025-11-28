@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    overflow: hidden;
+    font-family: Helvetica, sans-serif;
+    background: url('../assets/business-office-wallpaper.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
+.container{
+    width: 350px;
+    height: 500px;
+    perspective: 600px;
+    float: left;
+}
+.container:hover > .profile{
+    transform: rotateY(-180deg);
+}
+.profile{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1500ms;
+    transform-style: preserve-3d;
+}
+
+.front,
+.back{
+    width: 100%;
+    height: 350px;
+    border-radius: 2rem;
+    box-shadow: 6px 3px 2px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    text-align: center;
+    backface-visibility: hidden;
+}
+.front{
+    background-color: #373c4f6f;
+    color: rgb(100, 100, 255);
+    border: 1px solid black;
+}
+.back{
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+    border: 1px solid white;
+    transform: rotateY(180deg);
+}
+ul{
+    list-style: none;
+}
+.container2{
+    width: 350px;
+    height: 500px;
+    perspective: 600px;
+    float: left;
+}
+.container2:hover > .profile2{
+    transform: rotateY(-180deg);
+}
+.profile2{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1500ms;
+    transform-style: preserve-3d;
+}
+
+.front2,
+.back2{
+    width: 100%;
+    height: 350px;
+    border-radius: 2rem;
+    box-shadow: 6px 3px 2px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    text-align: center;
+    backface-visibility: hidden;
+}
+.front2{
+    background-color: #373c4f6f;
+    color: rgb(100, 100, 255);
+    border: 1px solid black;
+}
+.back2{
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+    border: 1px solid white;
+    transform: rotateY(180deg);
+}
+.container3{
+    width: 350px;
+    height: 500px;
+    perspective: 600px;
+    float: left;
+}
+.container3:hover > .profile3{
+    transform: rotateY(-180deg);
+}
+.profile3{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1500ms;
+    transform-style: preserve-3d;
+}
+
+.front3,
+.back3{
+    width: 100%;
+    height: 350px;
+    border-radius: 2rem;
+    box-shadow: 6px 3px 2px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    text-align: center;
+    backface-visibility: hidden;
+}
+.front3{
+    background-color: #373c4f6f;
+    color: rgb(100, 100, 255);
+    border: 1px solid black;
+}
+.back3{
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+    border: 1px solid white;
+    transform: rotateY(180deg);
+}
