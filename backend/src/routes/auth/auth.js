@@ -72,7 +72,7 @@ auth.post('/register', async (req, res, next) => {
 
     if (!await userExists(email, db)) {
       await registerUser(email, name, firstname, hashedPassword, db);
-      
+      console.log("registered")
       const [newRows] = await db.query('SELECT id, email, name FROM user WHERE email = ?', [email]);
       const newUser = newRows[0];
 

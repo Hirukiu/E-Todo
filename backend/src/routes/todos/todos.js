@@ -61,20 +61,21 @@ todos.put('/todos/:id', async (req, res, next) => {
         const db = req.app.locals.db;
         const todoId = req.params.id;
 
-        if (!await todoExists(todoId, db)) {
+        if (!await todoExists(db, todoId)) {
             const error = new Error('Todo not found');
             error.name = 'NotFoundError';
             throw error;
         }
 
         const { title, description, due_time, user_id, status } = req.body;
-
-        if (!title || !description || !user_id) {
+        console.log( title, description, due_time, user_id, status)
+        if (!title || !description || !user_id || !user_id || !status) {
             const error = new Error('Missing parameters');
             error.name = 'BadParametersError';
+            console.log('BadParam')
             throw error;
         }
-
+        console.log('hey')
         const result = await UpdateTodo(db, todoId, title, description, due_time, user_id, status);
         res.status(200).json(result);
     } catch (err) {
@@ -86,7 +87,7 @@ const { DeleteTodo } = require('./todos.query');
 todos.delete('/todos/:id', async (req, res, next) => {
     console.log("Delete todo endpoint reached");
     try {
-        
+
         const db = req.app.locals.db;
         const todoId = req.params.id;
 

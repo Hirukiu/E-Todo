@@ -47,7 +47,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     // 1. Créer une div pour la tâche
                     const taskDiv = document.createElement("div");
                     taskDiv.classList.add("task");
-
+                    console.log(typeof task.due_time);
+                    console.log(task.due_time);
+                    const dateObject = new Date(task.due_time);
                     // 2. Ajouter le contenu
                     taskDiv.innerHTML = `
                 <div class="tasks">
@@ -56,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <h3 class="task-title">${task.title}</h3>
                         </div>
                         <p class="description">${task.description}</p>
-                        <p class="task-time">${task.due_time}</p>
+                        <p class="task-time">${dateObject.toLocaleString('fr-FR')}</p>
                         <div class="align">
                         <p class="status">${task.status}</p>
                         <button class="edit-btn" data-id="${task.id}">Edit</button>
@@ -153,37 +155,62 @@ window.onclick = function (event) {
 
 
 
+// document.getElementsByClassName(".edit-btn").addEventListener("click", function () {
+//     document.getElementById("editModal").style.display = "block";
+//     console.log("blah")
+// })
 
+// document.getElementById("closeEditModal").onclick = () => {
+//     document.getElementById("editModal").style.display = "none";
+// };
+
+
+// document.getElementById("saveEditBtn").addEventListener("click", function () {
+    
+
+//         if (e.target.classList.contains("edit-btn")) {
+
+//             const taskId = e.target.dataset.id;
+//             const title = document.getElementById("editTitle").value;
+//             const desciption = document.getElementById("editDescription").value;
+//             const due_time = document.getElementById("task-time-to_edit").value;
+//             const status = document.getElementById("editStatus").value;
+//             const user_id = localStorage.getItem("id");
+
+//             document.getElementById("saveEditBtn").dataset.id = taskId;
+
+//             UpdateTodo(taskId, title, desciption, due_time, user_id, status);
+
+            
+//         }
+//     });
+
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('edit-btn')) {
+    
+        const taskId = e.target.dataset.id;
+
+        document.getElementById("saveEditBtn").dataset.id = taskId;
+        document.getElementById("editModal").style.display = "block";
+    }
+});
 document.getElementById("closeEditModal").onclick = () => {
     document.getElementById("editModal").style.display = "none";
 };
 
+document.getElementById("saveEditBtn").addEventListener("click", function (e) {
+    const taskId = document.getElementById("saveEditBtn").dataset.id;
 
-document.getElementById("saveEditBtn").addEventListener("click", function () {
-    document.addEventListener("click", function (e) {
+    const title = document.getElementById("editTitle").value;
+    const description = document.getElementById("editDescription").value;
+    const due_time = document.getElementById("task-time-to_edit").value;
+    const status = document.getElementById("editStatus").value;
+    const user_id = localStorage.getItem("id");
 
-
-        if (e.target.classList.contains("edit-btn")) {
-            const taskId = e.target.dataset.id;
-            const title = document.getElementById("editTitle").value;
-            const desciption = document.getElementById("editDescription").value;
-            const due_time = document.getElementById("task-time-to_edit").value;
-            const status = document.getElementById("editStatus").value;
-            const user_id = localStorage.getItem("id");
-            document.getElementById("saveEditBtn").dataset.id = taskId;
-            UpdateTodo(taskId, title, desciption, due_time, user_id, status);
-
-
-
-
-            document.getElementById("editModal").style.display = "block";
-
-
-        }
-    });
+    UpdateTodo(taskId, title, description, due_time, user_id, status);
+    
+    document.getElementById("editModal").style.display = "none";
 });
-
-
 
 
 document.getElementById("add-task-btn").addEventListener("click", async () => {
@@ -334,26 +361,34 @@ async function UpdateUser(email, password, firstname, name) {
 //-------------------------------------------------------------------------------------------------------------------------//
 
 async function UpdateTodo(id, title, description, due_time, user_id, status) {
-    const res = await fetch(`http://localhost:5000/todos/${id}`,
-        {
-            method: "PUT",
-            headers:
+    if (id || title || description || due_time || user_id || status){
+        console.log(id, title, description, due_time, user_id, status)
+        const res = await fetch(`http://localhost:5000/todos/${id}`,
             {
-                "Authorization": localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify
-                ({
-                    "title": title,
-                    "description": description,
-                    "due_time": due_time,
-                    "user_id ": user_id,
-                    "status": status
-                })
-        }
-    );
-    return res.json();
+                method: "PUT",
+                headers:
+                {
+                    "Authorization": localStorage.getItem('token'),
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify
+                    ({
+                        "id" : id,
+                        "title": title,
+                        "description": description,
+                        "due_time": due_time,
+                        "user_id ": user_id,
+                        "status": status
+                    })
+            }
+        );
+        return res.json();
+    }
+    else {
+        console.log("mauvais parametres : ",id, title, description, due_time, user_id, status)
+    }
 }
+
 
 // async function UpdateTodo(id, status) {
 //

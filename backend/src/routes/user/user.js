@@ -20,13 +20,14 @@ users.get('/user', async (req, res, next) => {
 });
 
 
-const { GetAllUserTodos } = require('./user.query');
+const { GetUserTodos } = require('./user.query');
 users.get('/user/todos', async (req, res, next) => {
     try {
         const token = req.header('Authorization');
         const decodedPayload = jwt.verify(token, key);
         const db = req.app.locals.db;
-        const rows = await GetAllUserTodos(db, decodedPayload.id);
+        const rows = await GetUserTodos(db, decodedPayload.id);
+        console.log(rows)
         res.status(200).json(rows);
     } catch (err) {
         next(err);
