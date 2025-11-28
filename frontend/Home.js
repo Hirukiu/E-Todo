@@ -241,100 +241,48 @@ document.getElementById("add-task-btn").addEventListener("click", async () => {
             window.location.href = "http://localhost:8080/Home.html";
         })
 });
-
-//------------------------------------------------------ fonction pour la route delete ----------------------------------------------------//
-//
-// pour l'utiliser appeler DeleteUser sans paramétre supprimera l'utilisateur actuel et avec un parametre supprimera l'utilisateur a l'id  //
-//
-// DeleteUser(int id);
-// DeleteUser(); 
-// Return {"msg": "Successfully deleted record number: ${id}"} si c'est bon ou un message d'erreur classique
-
-async function DeleteUser() {
-    const res = await fetch(`http://localhost:5000/users/${localStorage.getItem("id")}`,
-        {
-            method: "DELETE",
-            headers:
-            {
-                "Authorization": localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-        });
-    return res;
-}
-
-async function DeleteUser(id) {
-    const res = await fetch(`http://localhost:5000/users/${id}`,
-        {
-            method: "DELETE",
-            headers:
-            {
-                "Authorization": localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-        });
-    return res.json();
-}
-
-//---------------------------------------- fonction pour update user ---------------------------------------------------------//
+//---------------------------------------- fonction get todos ---------------------------------------------------------//
 //  
-//  met a jour un user peut s'appeler avec ou sans id        
-//                                                                                                                  
-//  UpdateUser(id, email, password, firstname, name)
-//  UpdateUser(email, password, firstname, name)
+//  voir les info de tous les todos     
+//    
+//  ViewTodos()                                                                                                           
 //
+//  return les info du Todo
 //
-//  return {
-//      "id": 1,
-//      "email": email ,
-//      "password":  hashed password  ,
-//      "create _at": "XXXX-XX-XX XX:XX:XX" ,
-//      "firstname": firstname ,
-//      "name": name
-//  }
-//----------------------------------------------------------------------------------------------------------------------------//
-
-async function UpdateUser(id, email, password, firstname, name) {
-    const res = await fetch(`http://localhost:5000/users/${id}`,
+//-------------------------------------------------------------------------------------------------------------------------//
+async function ViewTodos(){
+    const res = await fetch(`http://localhost:5000/todos`, {
+        method: "GET",
+        headers:
         {
-            method: "PUT",
-            headers:
-            {
-                "Authorization": localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify
-                ({
-                    "email": email,
-                    "password": password,
-                    "firstname": firstname,
-                    "name": name
-                })
-        }
-    );
+            "Authorization": localStorage.getItem('token'),
+            "Content-Type": "application/json"
+        },
+    });
     return res.json();
 }
 
-async function UpdateUser(email, password, firstname, name) {
-    const res = await fetch(`http://localhost:5000/users/${localStorage.getItem("id")}`,
+//---------------------------------------- fonction get todo ---------------------------------------------------------//
+//  
+//  voir les info d'un todo      
+//    
+//  ViewTodo(id)                                                                                                           
+//
+//  return les info du Todo
+//
+//-------------------------------------------------------------------------------------------------------------------------//
+async function ViewTodo(id){
+    const res = await fetch(`http://localhost:5000/todos/${id}`, {
+        method: "GET",
+        headers:
         {
-            method: "PUT",
-            headers:
-            {
-                "Authorization": localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify
-                ({
-                    "email": email,
-                    "password": password,
-                    "firstname": firstname,
-                    "name": name
-                })
-        }
-    );
+            "Authorization": localStorage.getItem('token'),
+            "Content-Type": "application/json"
+        },
+    });
     return res.json();
 }
+
 
 //---------------------------------------- fonction pour put todo ---------------------------------------------------------//
 //  
