@@ -50,7 +50,6 @@ const btnforregister = document.querySelector(".btnforlogin");
 btnforregister.addEventListener("click", function (event) {
     const form = document.getElementById('userFormLogin');
     form.style.display = 'block';
-    form.style.width = 'auto';
 });
 
 const closeElement = document.querySelector(".close");
