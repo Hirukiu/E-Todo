@@ -12,16 +12,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         }
     );
+
+
     const result = await res.json();
 
+    console.log(result)
+    if (result && result.msg && (result.msg === "No token, authorization denied" || result.msg === "Token is not valid")) {
+        console.error("token pas bon");
 
-
-    localStorage.setItem('id', result[0].id);
-
-
-    if (result.msg === "Token is not valid" || result.msg === "No token, authorization denied") {
-        console.log("Token not valid");
-        console.log(result.msg);
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        
         window.location.href = "http://localhost:8080/index.html";
     }
     else {

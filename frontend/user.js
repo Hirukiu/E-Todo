@@ -6,12 +6,39 @@ function toggleSidebar() {
     toggleButton.classList.toggle('rotate')
 }
 
+
+document.addEventListener('DOMContentLoaded', loadUserInfo);
+
+async function deleteUser() {
+    await DeleteCurrUser();
+    
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    
+
+    window.location.href = "http://localhost:8080/index.html";
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.delete').addEventListener('click', deleteUser);
+});
+
 async function loadUserInfo() {
    
     const res = await getCurrentUser();
     
     const user = res[0];
+
     console.log(user)
+
+    if (res && res.msg && (res.msg === "No token, authorization denied" || res.msg === "Token is not valid")) {
+        
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        
+        window.location.href = "http://localhost:8080/index.html";
+        return;
+    }
     const dateObject = new Date(user.created_at);
 
     document.querySelector('.name').textContent = user.name;
@@ -19,11 +46,6 @@ async function loadUserInfo() {
     document.querySelector('.create_at').textContent = dateObject.toLocaleString('fr-FR');
     document.querySelector('.email').textContent = user.email;
 }
-
-document.addEventListener('DOMContentLoaded', loadUserInfo);
-
-
-
 
 //------------------------------------------------------ fonction pour get l'user ----------------------------------------------------//
 //
