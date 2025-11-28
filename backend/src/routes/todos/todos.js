@@ -66,9 +66,9 @@ todos.put('/todos/:id', async (req, res, next) => {
             error.name = 'NotFoundError';
             throw error;
         }
-
+        console.log(req.body)
         const { title, description, due_time, user_id, status } = req.body;
-        console.log( title, description, due_time, user_id, status)
+        console.log(todoId, title, description, due_time, user_id, status)
         if (!title || !description || !user_id || !user_id || !status) {
             const error = new Error('Missing parameters');
             error.name = 'BadParametersError';
