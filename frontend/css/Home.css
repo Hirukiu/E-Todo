@@ -81,6 +81,65 @@ h1{
     color: rgb(80, 80, 255);
     background-color: transparent;
 }
+.edit-task-body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+}
+.edit-task-body .edit-task-input{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.edit-task-body .edit-task-input input{
+    width: 80%;
+    height: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 1rem;
+    font-weight: 400;
+}
+.edit-task-body .edit-task-input input::placeholder{
+    color: #373c4fdd;
+}
+.edit-task-body .edit-task-input input:focus{
+    box-shadow: 0 0 10px 2px rgb(80, 80, 255);
+    
+}
+.edit-task-body .edit-task-input input:focus::placeholder{
+    color: rgb(80, 80, 255,0.85);
+}
+.edit-task-footer{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.edit-task-btn{
+    height: 40px;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: rgb(80, 80, 255);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid rgb(80, 80, 255);
+}
+.edit-task-btn:hover{
+    color: rgb(80, 80, 255);
+    background-color: transparent;
+}
 .task-priority{
     background-color: rgba(255, 255, 255, 0.25);
     border: 1px solid black;
@@ -91,6 +150,17 @@ h1{
 .task-priority option{
     background-color: #4d536c;
 }
+.ed-task-priority{
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    padding: 1px 5px;
+}
+.ed-task-priority option{
+    background-color: #4d536c;
+}
+
 
 
 
@@ -288,7 +358,30 @@ h1{
     width: 100%;
     background-color: rgba(128, 128, 128, 0.2);
 }
+.modal-ed{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    background-color: rgba(128, 128, 128, 0.2);
+}
 .folder-content{
+    color: white;
+    background-color: #373c4f;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid black;
+    width: auto;
+    height: auto;
+    margin-top: 15%;
+    align-self: center;
+    justify-content: center;
+    max-width: 25%;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.463);
+}
+.edit-content{
     color: white;
     background-color: #373c4f;
     margin: 15% auto;
@@ -316,10 +409,23 @@ h1{
     text-decoration: none;
     cursor: pointer;
 }
+.cls-ed{
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.cls-ed:hover,
+.cls-ed:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 .animate {
   -webkit-animation: animatezoom 0.6s;
   animation: animatezoom 0.6s
 }
+
 @-webkit-keyframes animatezoom {
   from {-webkit-transform: scale(0)} 
   to {-webkit-transform: scale(1)}
